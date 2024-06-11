@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar :: head}">
+
+</head>
+<body class="vertical  light  ">
+<div class="wrapper">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div th:replace="~{fragments/navbar :: sidebar}"></div>
+
+
+    <main role="main" class="main-content">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="mb-2 page-title">Distritos</h2>
+                            <!--                    <p th:text="|Hola ${nombre}|"></p>-->
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New </button>
+                        </div>
+                    </div>
+                    <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive
+                        enhancement, that adds all of these advanced features to any HTML table. </p>
+                    <div class="row my-4">
+
+                        <!-- Small table -->
+                        <div class="col-md-12">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <!-- table -->
+                                    <table class="table datatables" id="dataTable-1">
+                                        <thead>
+                                        <tr>
+                                            <!--                                            <th></th>-->
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Estado</th>
+                                            <th>Creado</th>
+                                            <th>Editado</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="dis : ${distritos}">
+                                            <!--                                            <td>-->
+                                            <!--                                                <div class="custom-control custom-checkbox">-->
+                                            <!--                                                    <input type="checkbox" class="custom-control-input">-->
+                                            <!--                                                    <label class="custom-control-label"></label>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </td>-->
+                                            <td th:text="${dis.id}"></td>
+                                            <td th:text="${dis.descripcion}"></td>
+                                            <td th:text="${dis.estado}"></td>
+                                            <td th:text="${#temporals.format(dis.createdAt, 'dd-MM-yyyy')}"></td>
+                                            <td th:text="${dis.updatedAt}"></td>
+                                            <td>
+                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    <span class="text-muted sr-only">Action</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="#">Remove</a>
+                                                    <a class="dropdown-item" href="#">Assign</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> <!-- simple table -->
+
+                    </div>
+
+                </div> <!-- .col-12 -->
+            </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+    </main> <!-- main -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui urna, cursus mollis cursus vitae, fringilla vel augue. In vitae dui ut ex fringilla consectetur. Sed vulputate ante arcu, non vehicula mauris porttitor quis. Praesent tempor varius orci sit amet sodales. Nullam feugiat condimentum posuere. Vivamus bibendum mattis mi, vitae placerat lorem sagittis nec. Proin ac magna iaculis, faucibus odio sit amet, volutpat felis. Proin eleifend suscipit eros, quis vulputate tellus condimentum eget. Maecenas eget dui velit. Aenean in maximus est, sit amet convallis tortor. In vel bibendum mauris, id rhoncus lectus. Suspendisse ullamcorper bibendum tellus a tincidunt. Donec feugiat dolor lectus, sed ullamcorper ante rutrum non. Mauris vestibulum, metus sit amet lobortis fringilla, dui est venenatis ligula, a euismod sem augue vel lorem. Nunc feugiat eget tortor vel tristique. Mauris lobortis efficitur ligula, et consectetur lectus maximus sed. </div>
+            <div class="modal-footer">
+                <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn mb-2 btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/navbar :: modal}"></div>
+
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/simplebar.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/daterangepicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.stickOnScroll.js}"></script>
+<script type="text/javascript" th:src="@{/js/tinycolor-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/config.js}"></script>
+<script type="text/javascript" th:src="@{/js/apps.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+<script>
+    $('#dataTable-1').DataTable(
+        {
+            autoWidth: true,
+            "lengthMenu": [
+                [8, 16, 32, 64, -1],
+                [8, 16, 32, 64, "All"]
+            ]
+        });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-56159088-1');
+</script>
+</body>
+</html>

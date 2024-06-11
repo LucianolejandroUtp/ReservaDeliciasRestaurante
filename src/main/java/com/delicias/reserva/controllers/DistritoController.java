@@ -22,7 +22,7 @@ public class DistritoController {
     public String prueba(@RequestParam(name ="nombre", required = false, defaultValue = "Mundo") String nombre, Model model) {
         System.out.println("Hola mundo");
         model.addAttribute("nombre", nombre);
-        return "index";
+        return "prueba";
     }
 
     @GetMapping(path = {"/distritos", "/lista"})
@@ -30,12 +30,14 @@ public class DistritoController {
 
         List<Distrito> distritos = distritoService.getAllDistritos();
 
+        Distrito dis = distritoService.getDistritoById(3L);
+
         for (Distrito distrito : distritos) {
-            System.out.println(distrito.getDescripcion());
+            System.out.println(distrito.toString());
         }
-//        System.out.println(distritoService.getAllDistritos());
+        System.out.println("--" + dis.getDescripcion() + "--");
         model.addAttribute("distritos", distritos);
 
-        return "index";
+        return "distrito";
     }
 }

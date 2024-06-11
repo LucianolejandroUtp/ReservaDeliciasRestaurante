@@ -17,4 +17,12 @@ public class DistritoService {
     public List<Distrito> getAllDistritos() {
         return distritoRepository.findAll();
     }
+
+    public Distrito getDistritoById(Long id) {
+        return distritoRepository.findById(id).orElse(null);
+    }
+
+    public Distrito saveDistrito(Distrito distrito) {
+        return distritoRepository.save(distrito);
+    }
 }
