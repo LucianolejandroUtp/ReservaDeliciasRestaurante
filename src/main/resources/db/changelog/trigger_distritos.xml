@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1" author="Lucy">
+        <sql>
+            <![CDATA[
+            CREATE TRIGGER distritos_before_update
+                BEFORE UPDATE ON distritos
+                FOR EACH ROW
+            BEGIN
+                IF NEW.estado IS NULL THEN
+                        SET NEW.estado = 'ACTIVO';
+            END IF;
+            IF NEW.created_at IS NULL THEN
+                        SET NEW.created_at = CURRENT_TIMESTAMP;
+            END IF;
+                    IF NEW.updated_at IS NULL THEN
+                        SET NEW.updated_at = CURRENT_TIMESTAMP;
+            END IF;
+            END;
+            ]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

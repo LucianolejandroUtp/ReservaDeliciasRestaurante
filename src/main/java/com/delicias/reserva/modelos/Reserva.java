@@ -2,6 +2,7 @@ package com.delicias.reserva.modelos;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,28 +22,34 @@ public class Reserva {
     @Column(name = "hora", nullable = false)
     private LocalTime hora;
 
-    @Column(name = "nroPersonas", nullable = false)
+    @Column(name = "nro_personas", nullable = false)
     private Integer nroPersonas;
 
     @ColumnDefault("'ACTIVO'")
     @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
-    private String estado;
+    private EstadoType estado = EstadoType.ACTIVO;
 
+    @CreationTimestamp
     @ColumnDefault("current_timestamp()")
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at")
     private Instant createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Instant updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bebidasId", nullable = false)
+    @JoinColumn(name = "bebidas_id", nullable = false)
     private Bebida bebidas;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "platosId", nullable = false)
+    @JoinColumn(name = "platos_id", nullable = false)
     private Plato platos;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "usuarios_id", nullable = false)
+    private Usuario usuarios;
 
     public Long getId() {
         return id;
@@ -76,11 +83,11 @@ public class Reserva {
         this.nroPersonas = nroPersonas;
     }
 
-    public String getEstado() {
+    public EstadoType getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoType estado) {
         this.estado = estado;
     }
 
@@ -114,6 +121,14 @@ public class Reserva {
 
     public void setPlatos(Plato platos) {
         this.platos = platos;
+    }
+
+    public Usuario getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuario usuarios) {
+        this.usuarios = usuarios;
     }
 
 }

@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-6 text-right">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New </button>
+                            <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New</button>
                         </div>
                     </div>
                     <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive
@@ -46,12 +46,6 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="dis : ${distritos}">
-                                            <!--                                            <td>-->
-                                            <!--                                                <div class="custom-control custom-checkbox">-->
-                                            <!--                                                    <input type="checkbox" class="custom-control-input">-->
-                                            <!--                                                    <label class="custom-control-label"></label>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </td>-->
                                             <td th:text="${dis.id}"></td>
                                             <td th:text="${dis.descripcion}"></td>
                                             <td th:text="${dis.estado}"></td>
@@ -63,9 +57,13 @@
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Remove</a>
-                                                    <a class="dropdown-item" href="#">Assign</a>
+                                                    <!-- Button trigger modal -->
+
+                                                    <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${dis.id})|"> Editar</button>
+                                                    <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${dis.id})|"> Eliminar</button>
+                                                    <!--                                                    <a class="dropdown-item" href="#">Edit</a>-->
+                                                    <!--                                                    <a class="dropdown-item" href="#">Remove</a>-->
+                                                    <!--                                                    <a class="dropdown-item" href="#">Assign</a>-->
                                                 </div>
                                             </td>
                                         </tr>
@@ -74,9 +72,7 @@
                                 </div>
                             </div>
                         </div> <!-- simple table -->
-
                     </div>
-
                 </div> <!-- .col-12 -->
             </div> <!-- .row -->
         </div> <!-- .container-fluid -->
@@ -84,7 +80,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Create-->
 <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -94,14 +90,61 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui urna, cursus mollis cursus vitae, fringilla vel augue. In vitae dui ut ex fringilla consectetur. Sed vulputate ante arcu, non vehicula mauris porttitor quis. Praesent tempor varius orci sit amet sodales. Nullam feugiat condimentum posuere. Vivamus bibendum mattis mi, vitae placerat lorem sagittis nec. Proin ac magna iaculis, faucibus odio sit amet, volutpat felis. Proin eleifend suscipit eros, quis vulputate tellus condimentum eget. Maecenas eget dui velit. Aenean in maximus est, sit amet convallis tortor. In vel bibendum mauris, id rhoncus lectus. Suspendisse ullamcorper bibendum tellus a tincidunt. Donec feugiat dolor lectus, sed ullamcorper ante rutrum non. Mauris vestibulum, metus sit amet lobortis fringilla, dui est venenatis ligula, a euismod sem augue vel lorem. Nunc feugiat eget tortor vel tristique. Mauris lobortis efficitur ligula, et consectetur lectus maximus sed. </div>
-            <div class="modal-footer">
-                <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn mb-2 btn-primary">Save changes</button>
+            <div class="modal-body">
+                <form th:action="@{/distrito/create}" method="post" id="form-create">
+                    <div class="form-group">
+                        <label for="createDistrito">Distrito</label>
+                        <input type="text" id="createDistrito" name="createDistrito" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn mb-2 btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<!-- EndModal Create-->
+
+<!-- Modal Update-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="updateForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabelEdit">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="updateId">Id</label>
+                        <input type="text" id="updateId" name="updateId" class="form-control" readonly="">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDescripcion">Distrito</label>
+                        <input type="text" id="updateDescripcion" name="updateDescripcion" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateEstado">Estado</label>
+                        <select class="form-control" id="updateEstado" name="updateEstado">
+                            <option value="ACTIVO">Activo</option>
+                            <option value="INACTIVO">Inactivo</option>
+                            <option value="ELIMINADO">Eliminado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-2 btn-primary" onclick="registroUpdate()">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- EndModal Update-->
+
 
 <div th:replace="~{fragments/navbar :: modal}"></div>
 
@@ -139,6 +182,63 @@
 
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
+</script>
+
+<script th:inline="javascript">
+    function modalFill(id) {
+        $.ajax({
+            url: '/distrito/' + id,
+            method: 'GET',
+            success: function (data) {
+                $('#updateId').val(data.id);
+                $('#updateDescripcion').val(data.descripcion);
+                $('#updateEstado').val(data.estado);
+
+                $('#updateModal').modal('show'); // Mostrar el modal
+            },
+            error: function (error) {
+                console.error('Error al obtener los datos del distrito:', error);
+            }
+        });
+    }
+
+    function registroUpdate() {
+        var id = $("#updateId").val();
+        var distrito = {
+            id: id,
+            descripcion: $("#updateDescripcion").val(),
+            estado: $("#updateEstado").val(),
+        };
+
+        $.ajax({
+            url: "/distrito/update/" + id,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(distrito),
+            success: function (response) {
+                alert(response);
+                $("#editarModal").hide();
+                location.reload(); // Recargar la página para ver los cambios
+            },
+            error: function (xhr, status, error) {
+                alert("Error: " + error);
+            }
+        });
+    }
+
+    function registroDelete(id) {
+        $.ajax({
+            url: "/distrito/delete/" + id,
+            type: "DELETE",
+            success: function (response) {
+                alert(response);
+                location.reload(); // Recargar la página para ver los cambios
+            },
+            error: function (xhr, status, error) {
+                alert("Error: " + error);
+            }
+        });
+    }
 </script>
 </body>
 </html>

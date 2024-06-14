@@ -2,6 +2,7 @@ package com.delicias.reserva.modelos;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -18,7 +19,7 @@ public class Bebida {
     private String nombre;
 
     @Lob
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
@@ -34,15 +35,21 @@ public class Bebida {
 
     @ColumnDefault("'ACTIVO'")
     @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
-    private String estado;
+    private EstadoType estado = EstadoType.ACTIVO;
 
+    @CreationTimestamp
     @ColumnDefault("current_timestamp()")
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at")
     private Instant createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Instant updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "categorias_id", nullable = false)
+    private Categoria categorias;
 
     public Long getId() {
         return id;
@@ -92,11 +99,11 @@ public class Bebida {
         this.stock = stock;
     }
 
-    public String getEstado() {
+    public EstadoType getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoType estado) {
         this.estado = estado;
     }
 
@@ -114,6 +121,14 @@ public class Bebida {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Categoria getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Categoria categorias) {
+        this.categorias = categorias;
     }
 
 }

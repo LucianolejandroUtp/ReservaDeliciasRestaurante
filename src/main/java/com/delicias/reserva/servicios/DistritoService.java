@@ -22,7 +22,15 @@ public class DistritoService {
         return distritoRepository.findById(id).orElse(null);
     }
 
-    public Distrito saveDistrito(Distrito distrito) {
-        return distritoRepository.save(distrito);
+    public void saveDistrito(Distrito distrito) {
+        distritoRepository.save(distrito);
+    }
+
+    public void updateDistrito(Distrito distrito) {
+        distritoRepository.save(distrito);
+    }
+
+    public void deleteDistrito(Long id) {
+        distritoRepository.deleteById(id);
     }
 }

@@ -2,6 +2,7 @@ package com.delicias.reserva.modelos;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -16,11 +17,11 @@ public class Usuario {
     @Column(name = "nombres", nullable = false, length = 100)
     private String nombres;
 
-    @Column(name = "apellidoP", nullable = false, length = 100)
-    private String apellidoP;
+    @Column(name = "apellido_pat", nullable = false, length = 100)
+    private String apellidoPat;
 
-    @Column(name = "apellidoM", nullable = false, length = 100)
-    private String apellidoM;
+    @Column(name = "apellido_mat", nullable = false, length = 100)
+    private String apellidoMat;
 
     @Column(name = "telefono", nullable = false, length = 100)
     private String telefono;
@@ -42,22 +43,24 @@ public class Usuario {
 
     @ColumnDefault("'ACTIVO'")
     @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
-    private String estado;
+    private EstadoType estado = EstadoType.ACTIVO;
 
+    @CreationTimestamp
     @ColumnDefault("current_timestamp()")
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at")
     private Instant createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Instant updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "distritosId", nullable = false)
+    @JoinColumn(name = "distritos_id", nullable = false)
     private Distrito distritos;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rolesId", nullable = false)
+    @JoinColumn(name = "roles_id", nullable = false)
     private Role roles;
 
     public Long getId() {
@@ -76,20 +79,20 @@ public class Usuario {
         this.nombres = nombres;
     }
 
-    public String getApellidoP() {
-        return apellidoP;
+    public String getApellidoPat() {
+        return apellidoPat;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
+    public void setApellidoPat(String apellidoPat) {
+        this.apellidoPat = apellidoPat;
     }
 
-    public String getApellidoM() {
-        return apellidoM;
+    public String getApellidoMat() {
+        return apellidoMat;
     }
 
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public void setApellidoMat(String apellidoMat) {
+        this.apellidoMat = apellidoMat;
     }
 
     public String getTelefono() {
@@ -140,11 +143,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getEstado() {
+    public EstadoType getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoType estado) {
         this.estado = estado;
     }
 

@@ -15,4 +15,6 @@
     <include file="db/changelog/create_reservas_table.sql" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/insert_distritos.sql" relativeToChangelogFile="false"/>
+
+<!--    <include file="db/changelog/trigger_distritos.xml" relativeToChangelogFile="false"/>-->
 </databaseChangeLog>

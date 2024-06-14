@@ -2,6 +2,7 @@ package com.delicias.reserva.modelos;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -34,18 +35,20 @@ public class Plato {
 
     @ColumnDefault("'ACTIVO'")
     @Lob
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
-    private String estado;
+    private EstadoType estado = EstadoType.ACTIVO;
 
+    @CreationTimestamp
     @ColumnDefault("current_timestamp()")
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at")
     private Instant createdAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Instant updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "categoriasId", nullable = false)
+    @JoinColumn(name = "categorias_id", nullable = false)
     private Categoria categorias;
 
     public Long getId() {
@@ -96,11 +99,11 @@ public class Plato {
         this.stock = stock;
     }
 
-    public String getEstado() {
+    public EstadoType getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoType estado) {
         this.estado = estado;
     }
 
