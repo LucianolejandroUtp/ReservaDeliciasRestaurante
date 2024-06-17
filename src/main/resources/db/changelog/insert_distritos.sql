@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset Lucy:insertDistritosTable
+-- liquibase formatted sql
+-- changeset Lucy:insertDistritosTable
 
 INSERT INTO delicias_rest.distritos (descripcion) VALUES ('Alto Selva Alegre');
 INSERT INTO delicias_rest.distritos (descripcion) VALUES ('Arequipa');

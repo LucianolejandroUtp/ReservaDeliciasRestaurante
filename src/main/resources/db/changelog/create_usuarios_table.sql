@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset Lucy:createUsuariosTable
+-- liquibase formatted sql
+-- changeset Lucy:createUsuariosTable
 
 CREATE TABLE usuarios
 (
@@ -13,7 +13,7 @@ CREATE TABLE usuarios
     dni          VARCHAR(100)                             NOT NULL,
     email        VARCHAR(100)                             NOT NULL,
     password     VARCHAR(100)                             NOT NULL,
-    estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NOT NULL DEFAULT 'ACTIVO',
+    estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL DEFAULT 'ACTIVO',
     created_at   TIMESTAMP                                 NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
     distritos_id BIGINT                                   NOT NULL,

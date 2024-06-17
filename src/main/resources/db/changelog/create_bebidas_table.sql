@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset Lucy:createBebidasTable
+-- liquibase formatted sql
+-- changeset Lucy:createBebidasTable
 
 CREATE TABLE bebidas
 (
@@ -9,7 +9,7 @@ CREATE TABLE bebidas
     precio        DECIMAL(10, 2)                           NOT NULL,
     disponible    BOOLEAN                                  NOT NULL DEFAULT TRUE,
     stock         INT                                      NOT NULL DEFAULT 0,
-    estado        enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NOT NULL DEFAULT 'ACTIVO',
+    estado        enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL     DEFAULT 'ACTIVO',
     created_at    TIMESTAMP                                NULL     DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
     categorias_id BIGINT                                   NOT NULL,

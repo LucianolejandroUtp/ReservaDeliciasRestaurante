@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset Lucy:createBebidasTable
+-- liquibase formatted sql
+-- changeset Lucy:createBebidasTable
 
 CREATE TABLE reservas
 (
@@ -7,7 +7,7 @@ CREATE TABLE reservas
     fecha        DATE                                     NOT NULL,
     hora         TIME                                     NOT NULL,
     nro_personas INT                                      NOT NULL,
-    estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NOT NULL DEFAULT 'ACTIVO',
+    estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL DEFAULT 'ACTIVO',
     created_at   TIMESTAMP                                 NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
     bebidas_id   BIGINT                                   NOT NULL,

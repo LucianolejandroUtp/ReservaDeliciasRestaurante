@@ -2,8 +2,6 @@ package com.delicias.reserva.modelos;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
@@ -20,11 +18,9 @@ public class Distrito {
 
     @ColumnDefault("'ACTIVO'")
     @Lob
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estado", nullable = false)
-    private EstadoType estado = EstadoType.ACTIVO;
+    @Column(name = "estado")
+    private String estado;
 
-    @CreationTimestamp
     @ColumnDefault("current_timestamp()")
     @Column(name = "created_at")
     private Instant createdAt;
@@ -48,11 +44,11 @@ public class Distrito {
         this.descripcion = descripcion;
     }
 
-    public EstadoType getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoType estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
