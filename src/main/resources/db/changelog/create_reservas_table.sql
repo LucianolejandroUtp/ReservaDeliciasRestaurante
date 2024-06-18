@@ -8,7 +8,7 @@ CREATE TABLE reservas
     hora         TIME                                     NOT NULL,
     nro_personas INT                                      NOT NULL,
     estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL DEFAULT 'ACTIVO',
-    created_at   TIMESTAMP                                 NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at   TIMESTAMP                                NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
     bebidas_id   BIGINT                                   NOT NULL,
     platos_id    BIGINT                                   NOT NULL,

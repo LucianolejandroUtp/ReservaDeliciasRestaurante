@@ -15,7 +15,10 @@
     <include file="db/changelog/create_reservas_table.sql" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/insert_distritos.sql" relativeToChangelogFile="false"/>
-
-
+    <include file="db/changelog/insert_roles.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/insert_categorias.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/insert_bebidas.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/insert_usuarios.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/insert_platos.sql" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
