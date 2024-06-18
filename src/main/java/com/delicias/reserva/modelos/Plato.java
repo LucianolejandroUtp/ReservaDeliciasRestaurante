@@ -18,13 +18,13 @@ public class Plato {
     private String nombre;
 
     @Lob
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
-    @ColumnDefault("1")
+    @ColumnDefault("b'1'")
     @Column(name = "disponible", nullable = false)
     private Boolean disponible = false;
 
