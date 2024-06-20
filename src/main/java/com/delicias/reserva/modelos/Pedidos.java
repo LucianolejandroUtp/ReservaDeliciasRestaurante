@@ -6,14 +6,12 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 
 @Entity
-@Table(name = "distritos")
-public class Distrito {
+@Table(name = "pedidos")
+public class Pedidos {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "descripcion", nullable = false, length = 100)
-    private String descripcion;
 
     @ColumnDefault("'ACTIVO'")
     @Lob
@@ -27,20 +25,24 @@ public class Distrito {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "reservas_id", nullable = false)
+    private Reservas reservas;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "platos_id", nullable = false)
+    private Platos platos;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "bebidas_id", nullable = false)
+    private Bebidas bebidas;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public String getEstado() {
@@ -65,6 +67,30 @@ public class Distrito {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Reservas getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Reservas reservas) {
+        this.reservas = reservas;
+    }
+
+    public Platos getPlatos() {
+        return platos;
+    }
+
+    public void setPlatos(Platos platos) {
+        this.platos = platos;
+    }
+
+    public Bebidas getBebidas() {
+        return bebidas;
+    }
+
+    public void setBebidas(Bebidas bebidas) {
+        this.bebidas = bebidas;
     }
 
 }

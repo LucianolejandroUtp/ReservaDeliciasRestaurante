@@ -1,6 +1,6 @@
 package com.delicias.reserva.servicios;
 
-import com.delicias.reserva.modelos.Distrito;
+import com.delicias.reserva.modelos.Distritos;
 import com.delicias.reserva.repositorios.DistritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,19 +14,19 @@ public class DistritoService {
     private DistritoRepository distritoRepository;
 
 
-    public List<Distrito> getAllDistritos() {
+    public List<Distritos> getAllDistritos() {
         return distritoRepository.findAll();
     }
 
-    public Distrito getDistritoById(Long id) {
+    public Distritos getDistritoById(Long id) {
         return distritoRepository.findById(id).orElse(null);
     }
 
-    public void saveDistrito(Distrito distrito) {
+    public void saveDistrito(Distritos distrito) {
         distritoRepository.save(distrito);
     }
 
-    public void updateDistrito(Distrito distrito) {
+    public void updateDistrito(Distritos distrito) {
         distritoRepository.save(distrito);
     }
 

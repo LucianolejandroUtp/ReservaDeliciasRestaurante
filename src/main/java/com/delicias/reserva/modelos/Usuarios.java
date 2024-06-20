@@ -7,8 +7,9 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuarios {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -51,13 +52,13 @@ public class Usuario {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "distritos_id", nullable = false)
-    private Distrito distritos;
+    private Distritos distritos;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "roles_id", nullable = false)
-    private Role roles;
+    private Roles roles;
 
     public Long getId() {
         return id;
@@ -163,19 +164,19 @@ public class Usuario {
         this.updatedAt = updatedAt;
     }
 
-    public Distrito getDistritos() {
+    public Distritos getDistritos() {
         return distritos;
     }
 
-    public void setDistritos(Distrito distritos) {
+    public void setDistritos(Distritos distritos) {
         this.distritos = distritos;
     }
 
-    public Role getRoles() {
+    public Roles getRoles() {
         return roles;
     }
 
-    public void setRoles(Role roles) {
+    public void setRoles(Roles roles) {
         this.roles = roles;
     }
 

@@ -9,8 +9,9 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "reservas")
-public class Reserva {
+public class Reservas {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -35,13 +36,13 @@ public class Reserva {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "usuarios_id", nullable = false)
-    private Usuario usuarios;
+    private Usuarios usuarios;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "mesas_id", nullable = false)
-    private Mesa mesas;
+    private Mesas mesas;
 
     public Long getId() {
         return id;
@@ -99,19 +100,19 @@ public class Reserva {
         this.updatedAt = updatedAt;
     }
 
-    public Usuario getUsuarios() {
+    public Usuarios getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(Usuario usuarios) {
+    public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
 
-    public Mesa getMesas() {
+    public Mesas getMesas() {
         return mesas;
     }
 
-    public void setMesas(Mesa mesas) {
+    public void setMesas(Mesas mesas) {
         this.mesas = mesas;
     }
 

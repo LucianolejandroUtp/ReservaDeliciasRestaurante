@@ -50,8 +50,6 @@
                             <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New</button>
                         </div>
                     </div>
-                    <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive
-                        enhancement, that adds all of these advanced features to any HTML table. </p>
                     <div class="row my-4">
 
                         <!-- Small table -->
@@ -67,6 +65,7 @@
                                             <th>Nombre</th>
                                             <th>Reservación</th>
                                             <th>Personas</th>
+                                            <th>Nro. Mesa</th>
                                             <th>Estado</th>
                                             <th>Creado</th>
                                             <th>Editado</th>
@@ -80,6 +79,7 @@
                                             <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} - ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
 <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
                                             <td th:text="${obj.nroPersonas}"></td>
+                                            <td th:text="${obj.mesas.nroMesa}"></td>
                                             <td th:text="${obj.estado}"></td>
                                             <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
                                             <td th:text="${obj.updatedAt}"></td>
@@ -146,35 +146,41 @@
                         <label for="dato3">Nro. de Personas</label>
                         <input type="text" id="dato3" name="dato3" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="dato4">Bebidas</label>
-                        <input type="text" id="dato4" name="dato4" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="multi-select2">Multiple Select</label>
-                        <select class="form-control select2-multi" id="multi-select2" multiple="multiple" >
-                                <option th:each="bebida : ${bebidas}" th:value="${bebida.id}" th:text="${bebida.nombre}"></option>
+<!--                    <div class="form-group">-->
+<!--                        <label for="dato4">Bebidas</label>-->
+<!--                        <input type="text" id="dato4" name="dato4" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="multi-select2">Multiple Select</label>-->
+<!--                        <select class="form-control select2-multi" id="multi-select2" multiple="multiple" >-->
+<!--                                <option th:each="bebida : ${bebidas}" th:value="${bebida.id}" th:text="${bebida.nombre}"></option>-->
 
-                        </select>
-                    </div> <!-- form-group -->
-
-
+<!--                        </select>-->
+<!--                    </div> &lt;!&ndash; form-group &ndash;&gt;-->
 
 
 
 
-                    <div class="form-group">
-                        <label for="dato5">Platos</label>
-                        <input type="text" id="dato5" name="dato5" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="dato66">Usuarios</label>
-                        <input type="text" id="dato66" name="dato66" class="form-control">
-                    </div>
+
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="dato5">Platos</label>-->
+<!--                        <input type="text" id="dato5" name="dato5" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="dato66">Usuarios</label>-->
+<!--                        <input type="text" id="dato66" name="dato66" class="form-control">-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label for="dato6">Usuarios</label>
                         <select class="form-control select2" id="dato6" name="dato6">
                                 <option th:each="usr : ${usuarios}" th:value="${usr.id}" th:text="|${usr.apellidoPat} - ${usr.nombres}|"></option>
+                        </select>
+                    </div> <!-- form-group -->
+                    <div class="form-group">
+                        <label for="dato7">Mesas</label>
+                        <select class="form-control select2" id="dato7" name="dato7">
+                            <option th:each="m : ${mesas}" th:value="${m.id}" th:text="|Nro. ${m.nroMesa} - Capacidad:${m.capacidad} - Estado:${m.estado}|"></option>
                         </select>
                     </div> <!-- form-group -->
 

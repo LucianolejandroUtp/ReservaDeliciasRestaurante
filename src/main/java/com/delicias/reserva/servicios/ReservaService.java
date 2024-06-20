@@ -1,6 +1,6 @@
 package com.delicias.reserva.servicios;
 
-import com.delicias.reserva.modelos.Reserva;
+import com.delicias.reserva.modelos.Reservas;
 import com.delicias.reserva.repositorios.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,19 +14,19 @@ public class ReservaService {
     private ReservaRepository reservaRepository;
 
 
-    public List<Reserva> getAllReservas() {
+    public List<Reservas> getAllReservas() {
         return reservaRepository.findAll();
     }
 
-    public Reserva getReservaById(Long id) {
+    public Reservas getReservaById(Long id) {
         return reservaRepository.findById(id).orElse(null);
     }
 
-    public void saveReserva(Reserva reserva) {
+    public void saveReserva(Reservas reserva) {
         reservaRepository.save(reserva);
     }
 
-    public void updateReserva(Reserva reserva) {
+    public void updateReserva(Reservas reserva) {
         reservaRepository.save(reserva);
     }
 

@@ -7,9 +7,10 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "platos")
-public class Plato {
+@Table(name = "bebidas")
+public class Bebidas {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -23,7 +24,7 @@ public class Plato {
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
-    @ColumnDefault("b'1'")
+    @ColumnDefault("1")
     @Column(name = "disponible", nullable = false)
     private Boolean disponible = false;
 
@@ -43,9 +44,9 @@ public class Plato {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "categorias_id", nullable = false)
-    private Categoria categorias;
+    private Categorias categorias;
 
     public Long getId() {
         return id;
@@ -119,11 +120,11 @@ public class Plato {
         this.updatedAt = updatedAt;
     }
 
-    public Categoria getCategorias() {
+    public Categorias getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(Categoria categorias) {
+    public void setCategorias(Categorias categorias) {
         this.categorias = categorias;
     }
 

@@ -1,9 +1,9 @@
 package com.delicias.reserva.controllers;
 
-import com.delicias.reserva.modelos.Bebida;
-import com.delicias.reserva.modelos.Reserva;
-import com.delicias.reserva.modelos.Usuario;
-import com.delicias.reserva.servicios.BebidaService;
+import com.delicias.reserva.modelos.Mesas;
+import com.delicias.reserva.modelos.Reservas;
+import com.delicias.reserva.modelos.Usuarios;
+import com.delicias.reserva.servicios.MesaService;
 import com.delicias.reserva.servicios.ReservaService;
 import com.delicias.reserva.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +27,19 @@ public class ReservaController {
     private ReservaService reservaService;
 
     @Autowired
-    private BebidaService bebidaService;
+    private MesaService mesaService;
 
     @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping(path = {"/reservas", "/lista"})
     public String getAllReservas(Model model) {
-        List<Reserva> reservas = reservaService.getAllReservas();
-        List<Bebida> bebidas = bebidaService.getAllBebidas();
-        List<Usuario> usuarios = usuarioService.getAllUsuarios();
+        List<Reservas> reservas = reservaService.getAllReservas();
+        List<Mesas> mesas = mesaService.getAllMesas();
+        List<Usuarios> usuarios = usuarioService.getAllUsuarios();
 
         model.addAttribute("reservas", reservas);
-        model.addAttribute("bebidas", bebidas);
+        model.addAttribute("mesas", mesas);
         model.addAttribute("usuarios", usuarios);
         return "reserva";
     }
@@ -50,16 +50,17 @@ public class ReservaController {
             @RequestParam(name ="dato1", required = false) String dato1,
             @RequestParam(name ="dato2", required = false) String dato2,
             @RequestParam(name ="dato3", required = false) String dato3,
-            @RequestParam(name ="dato4", required = false) String dato4,
-            @RequestParam(name ="dato5", required = false) String dato5,
-            @RequestParam(name ="dato6", required = false) String dato6
+//            @RequestParam(name ="dato4", required = false) String dato4,
+//            @RequestParam(name ="dato5", required = false) String dato5,
+            @RequestParam(name ="dato6", required = false) String dato6,
+            @RequestParam(name ="dato7", required = false) String dato7
             ) {
 
         System.out.println("---" + dato1 + "---");
         System.out.println("---" + dato2 + "---");
         System.out.println("---" + dato3 + "---");
-        System.out.println("---" + dato4 + "---");
-        System.out.println("---" + dato5 + "---");
+//        System.out.println("---" + dato4 + "---");
+//        System.out.println("---" + dato5 + "---");
         System.out.println("---" + dato6 + "---");
         DateTimeFormatter formatoEntradaFecha = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DateTimeFormatter formatoEntradaHora = DateTimeFormatter.ofPattern("hh:mm a");
@@ -72,15 +73,17 @@ public class ReservaController {
         System.out.println("Hora formateada: " + hora);
 
 
-        Usuario miUsuario = usuarioService.getUsuarioById(Long.parseLong(dato6));
+        Usuarios miUsuario = usuarioService.getUsuarioById(Long.parseLong(dato6));
+        Mesas miMesa = mesaService.getMesaById(Long.parseLong(dato7));
 
-        Reserva miReserva = new Reserva();
+        Reservas miReserva = new Reservas();
 
 
         miReserva.setFecha(fecha);
         miReserva.setHora(hora);
         miReserva.setNroPersonas(Integer.parseInt(dato3));
         miReserva.setUsuarios(miUsuario);
+        miReserva.setMesas(miMesa);
 
         reservaService.saveReserva(miReserva);
 

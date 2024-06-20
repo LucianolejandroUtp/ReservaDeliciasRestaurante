@@ -1,6 +1,6 @@
 package com.delicias.reserva.controllers;
 
-import com.delicias.reserva.modelos.Distrito;
+import com.delicias.reserva.modelos.Distritos;
 import com.delicias.reserva.servicios.DistritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class DistritoController {
     @GetMapping(path = {"/distritos", "/lista"})
     public String getAllDistritos(Model model) {
 
-        List<Distrito> distritos = distritoService.getAllDistritos();
+        List<Distritos> distritos = distritoService.getAllDistritos();
 
 //        Distrito dis = distritoService.getDistritoById(3L);
 
@@ -44,7 +44,7 @@ public class DistritoController {
     public String create(@RequestParam(name ="createDistrito", required = false, defaultValue = "Mundo") String createDistrito, Model model) {
 
         System.out.println("---" + createDistrito + "---");
-        Distrito miDistrito = new Distrito();
+        Distritos miDistrito = new Distritos();
 
         miDistrito.setDescripcion(createDistrito);
 
@@ -56,16 +56,16 @@ public class DistritoController {
     // Método para obtener los datos de un distrito por ID (para el modal de edición)
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Distrito> obtenerDistrito(@PathVariable Long id) {
-        Distrito distrito = distritoService.getDistritoById(id);
+    public ResponseEntity<Distritos> obtenerDistrito(@PathVariable Long id) {
+        Distritos distrito = distritoService.getDistritoById(id);
 //                .orElseThrow(() -> new IllegalArgumentException("Distrito inválido Id:" + id));
         return ResponseEntity.ok(distrito); // Devolver los datos del distrito en formato JSON
     }
 
     @PostMapping("/update/{id}")
     @ResponseBody
-    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Distrito distrito) {
-        Distrito distritoDB = distritoService.getDistritoById(id);
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Distritos distrito) {
+        Distritos distritoDB = distritoService.getDistritoById(id);
 
         System.out.println("Entrando al update de distrito");
         if (distritoDB.getDescripcion() == null || distritoDB.getDescripcion().isEmpty() || distritoDB.getDescripcion().isBlank() || distritoDB.getDescripcion() != distrito.getDescripcion()) {

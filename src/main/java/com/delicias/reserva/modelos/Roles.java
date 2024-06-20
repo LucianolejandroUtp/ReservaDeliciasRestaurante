@@ -6,17 +6,15 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 
 @Entity
-@Table(name = "mesas")
-public class Mesa {
+@Table(name = "roles")
+public class Roles {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "nro_mesa", nullable = false)
-    private Integer nroMesa;
-
-    @Column(name = "capacidad", nullable = false)
-    private Integer capacidad;
+    @Column(name = "descripcion", nullable = false, length = 100)
+    private String descripcion;
 
     @ColumnDefault("'ACTIVO'")
     @Lob
@@ -38,20 +36,12 @@ public class Mesa {
         this.id = id;
     }
 
-    public Integer getNroMesa() {
-        return nroMesa;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNroMesa(Integer nroMesa) {
-        this.nroMesa = nroMesa;
-    }
-
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getEstado() {

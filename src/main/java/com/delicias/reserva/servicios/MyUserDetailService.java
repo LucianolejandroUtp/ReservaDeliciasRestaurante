@@ -1,6 +1,6 @@
 package com.delicias.reserva.servicios;
 
-import com.delicias.reserva.modelos.Usuario;
+import com.delicias.reserva.modelos.Usuarios;
 import com.delicias.reserva.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +19,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        Optional<Usuarios> usuario = usuarioRepository.findByEmail(email);
         if (usuario.isPresent()) {
             var userObj = usuario.get();
             return User.builder()
@@ -32,7 +32,7 @@ public class MyUserDetailService implements UserDetailsService {
         }
     }
 
-    private String[] getRoles(Usuario usuario) {
+    private String[] getRoles(Usuarios usuario) {
         if (usuario.getRoles().getDescripcion() == null) {
             return new String[]{"USER"};
         } else {

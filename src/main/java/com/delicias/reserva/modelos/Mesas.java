@@ -6,11 +6,18 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 
 @Entity
-@Table(name = "pedidos")
-public class Pedido {
+@Table(name = "mesas")
+public class Mesas {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "nro_mesa", nullable = false)
+    private Integer nroMesa;
+
+    @Column(name = "capacidad", nullable = false)
+    private Integer capacidad;
 
     @ColumnDefault("'ACTIVO'")
     @Lob
@@ -24,24 +31,28 @@ public class Pedido {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "reservas_id", nullable = false)
-    private Reserva reservas;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "platos_id", nullable = false)
-    private Plato platos;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bebidas_id", nullable = false)
-    private Bebida bebidas;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getNroMesa() {
+        return nroMesa;
+    }
+
+    public void setNroMesa(Integer nroMesa) {
+        this.nroMesa = nroMesa;
+    }
+
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
     }
 
     public String getEstado() {
@@ -66,30 +77,6 @@ public class Pedido {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Reserva getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(Reserva reservas) {
-        this.reservas = reservas;
-    }
-
-    public Plato getPlatos() {
-        return platos;
-    }
-
-    public void setPlatos(Plato platos) {
-        this.platos = platos;
-    }
-
-    public Bebida getBebidas() {
-        return bebidas;
-    }
-
-    public void setBebidas(Bebida bebidas) {
-        this.bebidas = bebidas;
     }
 
 }
