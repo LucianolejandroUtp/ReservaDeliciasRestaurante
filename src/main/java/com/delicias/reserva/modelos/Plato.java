@@ -10,7 +10,6 @@ import java.time.Instant;
 @Table(name = "platos")
 public class Plato {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -44,7 +43,7 @@ public class Plato {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "categorias_id", nullable = false)
     private Categoria categorias;
 

@@ -13,7 +13,9 @@ CREATE TABLE reservas
 #     bebidas_id   BIGINT                                   NOT NULL,
 #     platos_id    BIGINT                                   NOT NULL,
     usuarios_id  BIGINT                                   NOT NULL,
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios (id)
+    mesas_id      BIGINT                                   NOT NULL,
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios (id),
+    FOREIGN KEY (mesas_id) REFERENCES mesas (id)
 #     FOREIGN KEY (bebidas_id) REFERENCES bebidas (id),
 #     FOREIGN KEY (platos_id) REFERENCES platos (id)
 );

@@ -51,11 +51,11 @@ public class Usuario {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "distritos_id", nullable = false)
     private Distrito distritos;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "roles_id", nullable = false)
     private Role roles;
 

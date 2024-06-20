@@ -32,7 +32,7 @@ public class SeguridadConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry ->{
-                    registry.requestMatchers("/","/js/**","/css/**","/fonts/**", "/assets/**").permitAll();
+                    registry.requestMatchers("/","/js/**","/css/**","/fonts/**", "/assets/**", "/favicon.ico").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
                     registry.requestMatchers("/distrito/**").hasRole("ADMIN");
                     registry.anyRequest().authenticated();

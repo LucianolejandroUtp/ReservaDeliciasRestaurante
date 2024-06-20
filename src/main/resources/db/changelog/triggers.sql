@@ -1,5 +1,7 @@
 -- Utilizar en phpmyadmin o HeidiSQL
 
+use delicias_rest;
+
 DELIMITER //
 CREATE TRIGGER tri_distritos_insert
     before INSERT
@@ -112,7 +114,19 @@ begin
 end//
 DELIMITER ;
 
-
+DELIMITER //
+CREATE TRIGGER tri_mesas_insert
+    before INSERT
+    ON mesas FOR EACH ROW
+begin
+    IF NEW.estado IS NULL THEN
+        SET NEW.estado = 'ACTIVO';
+    END if;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = CURRENT_TIMESTAMP;
+    END IF;
+end//
+DELIMITER ;
 
 
 
@@ -197,6 +211,17 @@ DELIMITER //
 CREATE TRIGGER tri_pedidos_update
     before update
     ON pedidos FOR EACH ROW
+BEGIN
+    IF NEW.updated_at IS NULL THEN
+        SET NEW.updated_at = CURRENT_TIMESTAMP;
+    END IF;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER tri_mesas_update
+    before update
+    ON mesas FOR EACH ROW
 BEGIN
     IF NEW.updated_at IS NULL THEN
         SET NEW.updated_at = CURRENT_TIMESTAMP;

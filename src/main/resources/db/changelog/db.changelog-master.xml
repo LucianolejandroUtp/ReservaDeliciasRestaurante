@@ -12,6 +12,7 @@
     <include file="db/changelog/create_categorias_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_platos_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_bebidas_table.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/create_mesas_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_reservas_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_pedidos_table.sql" relativeToChangelogFile="false"/>
 
@@ -21,6 +22,7 @@
     <include file="db/changelog/insert_bebidas.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/insert_usuarios.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/insert_platos.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/insert_mesas.sql" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/event_platos_stock.sql" relativeToChangelogFile="false"/>
 </databaseChangeLog>

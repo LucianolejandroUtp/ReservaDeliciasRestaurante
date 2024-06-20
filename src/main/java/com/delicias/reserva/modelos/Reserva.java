@@ -11,7 +11,6 @@ import java.time.LocalTime;
 @Table(name = "reservas")
 public class Reserva {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -36,9 +35,13 @@ public class Reserva {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuarios_id", nullable = false)
     private Usuario usuarios;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "mesas_id", nullable = false)
+    private Mesa mesas;
 
     public Long getId() {
         return id;
@@ -102,6 +105,14 @@ public class Reserva {
 
     public void setUsuarios(Usuario usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public Mesa getMesas() {
+        return mesas;
+    }
+
+    public void setMesas(Mesa mesas) {
+        this.mesas = mesas;
     }
 
 }
