@@ -36,15 +36,15 @@ public class Reserva {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "bebidas_id", nullable = false)
     private Bebida bebidas;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "platos_id", nullable = false)
     private Plato platos;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "usuarios_id", nullable = false)
     private Usuario usuarios;
 

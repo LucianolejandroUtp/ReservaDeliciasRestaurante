@@ -44,7 +44,7 @@ public class Bebida {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "categorias_id", nullable = false)
     private Categoria categorias;
 
