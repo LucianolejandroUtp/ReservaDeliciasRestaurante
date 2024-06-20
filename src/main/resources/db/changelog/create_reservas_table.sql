@@ -1,5 +1,5 @@
 -- liquibase formatted sql
--- changeset Lucy:createBebidasTable
+-- changeset Lucy:createReservasTable
 
 CREATE TABLE reservas
 (
@@ -10,10 +10,10 @@ CREATE TABLE reservas
     estado       enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL DEFAULT 'ACTIVO',
     created_at   TIMESTAMP                                NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
-    bebidas_id   BIGINT                                   NOT NULL,
-    platos_id    BIGINT                                   NOT NULL,
+#     bebidas_id   BIGINT                                   NOT NULL,
+#     platos_id    BIGINT                                   NOT NULL,
     usuarios_id  BIGINT                                   NOT NULL,
-    FOREIGN KEY (usuarios_id) REFERENCES usuarios (id),
-    FOREIGN KEY (bebidas_id) REFERENCES bebidas (id),
-    FOREIGN KEY (platos_id) REFERENCES platos (id)
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios (id)
+#     FOREIGN KEY (bebidas_id) REFERENCES bebidas (id),
+#     FOREIGN KEY (platos_id) REFERENCES platos (id)
 );

@@ -90,11 +90,25 @@ CREATE TRIGGER tri_categorias_insert
     ON categorias FOR EACH ROW
 begin
     IF NEW.estado IS NULL THEN
-SET NEW.estado = 'ACTIVO';
-END if;
-IF NEW.created_at IS NULL THEN
-SET NEW.created_at = CURRENT_TIMESTAMP;
-END IF;
+        SET NEW.estado = 'ACTIVO';
+    END if;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = CURRENT_TIMESTAMP;
+    END IF;
+end//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER tri_pedidos_insert
+    before INSERT
+    ON pedidos FOR EACH ROW
+begin
+    IF NEW.estado IS NULL THEN
+        SET NEW.estado = 'ACTIVO';
+    END if;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = CURRENT_TIMESTAMP;
+    END IF;
 end//
 DELIMITER ;
 
@@ -179,6 +193,16 @@ begin
 end//
 DELIMITER ;
 
+DELIMITER //
+CREATE TRIGGER tri_pedidos_update
+    before update
+    ON pedidos FOR EACH ROW
+BEGIN
+    IF NEW.updated_at IS NULL THEN
+        SET NEW.updated_at = CURRENT_TIMESTAMP;
+    END IF;
+END//
+DELIMITER ;
 
 
 

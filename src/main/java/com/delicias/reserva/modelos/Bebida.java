@@ -10,7 +10,6 @@ import java.time.Instant;
 @Table(name = "bebidas")
 public class Bebida {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

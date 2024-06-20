@@ -13,6 +13,7 @@
     <include file="db/changelog/create_platos_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_bebidas_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_reservas_table.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/create_pedidos_table.sql" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/insert_distritos.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/insert_roles.sql" relativeToChangelogFile="false"/>

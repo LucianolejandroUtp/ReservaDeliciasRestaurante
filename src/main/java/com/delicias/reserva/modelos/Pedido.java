@@ -4,25 +4,14 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
-@Table(name = "reservas")
-public class Reserva {
+@Table(name = "pedidos")
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
-
-    @Column(name = "hora", nullable = false)
-    private LocalTime hora;
-
-    @Column(name = "nro_personas", nullable = false)
-    private Integer nroPersonas;
 
     @ColumnDefault("'ACTIVO'")
     @Lob
@@ -37,8 +26,16 @@ public class Reserva {
     private Instant updatedAt;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "usuarios_id", nullable = false)
-    private Usuario usuarios;
+    @JoinColumn(name = "reservas_id", nullable = false)
+    private Reserva reservas;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "platos_id", nullable = false)
+    private Plato platos;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "bebidas_id", nullable = false)
+    private Bebida bebidas;
 
     public Long getId() {
         return id;
@@ -46,30 +43,6 @@ public class Reserva {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
-    }
-
-    public Integer getNroPersonas() {
-        return nroPersonas;
-    }
-
-    public void setNroPersonas(Integer nroPersonas) {
-        this.nroPersonas = nroPersonas;
     }
 
     public String getEstado() {
@@ -96,12 +69,28 @@ public class Reserva {
         this.updatedAt = updatedAt;
     }
 
-    public Usuario getUsuarios() {
-        return usuarios;
+    public Reserva getReservas() {
+        return reservas;
     }
 
-    public void setUsuarios(Usuario usuarios) {
-        this.usuarios = usuarios;
+    public void setReservas(Reserva reservas) {
+        this.reservas = reservas;
+    }
+
+    public Plato getPlatos() {
+        return platos;
+    }
+
+    public void setPlatos(Plato platos) {
+        this.platos = platos;
+    }
+
+    public Bebida getBebidas() {
+        return bebidas;
+    }
+
+    public void setBebidas(Bebida bebidas) {
+        this.bebidas = bebidas;
     }
 
 }
