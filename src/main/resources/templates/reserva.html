@@ -188,9 +188,9 @@
                         <button type="submit" class="btn mb-2 btn-primary">Guardar</button>
                     </div>
                 </form>
-
+<!-- 
                 <h3>Bebidas seleccionadas</h3>
-                <ul id="selected-beverages" class="list-group"></ul>
+                <ul id="selected-beverages" class="list-group"></ul> -->
             </div>
         </div>
     </div>
@@ -274,49 +274,6 @@
 </script>
 
 
-<script th:inline="javascript">
-    $(document).ready(function() {
-        // Inicializa Select2 para el select múltiple
-        $('#multi-select2').select2();
-
-        // Maneja el evento de cambio en el select para mostrar las bebidas seleccionadas
-        $('#multi-select2').on('change', function() {
-            let selectedBeverages = $('#multi-select2').select2('data');
-            let beverageList = $('#selected-beverages');
-            beverageList.empty(); // Limpiar la lista de bebidas seleccionadas
-
-            // Objeto para mantener el conteo de las bebidas seleccionadas
-            let beverageCount = {};
-
-            // Iterar sobre las bebidas seleccionadas y contarlas
-            selectedBeverages.forEach(function(beverage) {
-                let beverageId = beverage.id;
-                if (beverageCount[beverageId]) {
-                    beverageCount[beverageId]++;
-                } else {
-                    beverageCount[beverageId] = 1;
-                }
-            });
-
-            // Mostrar las bebidas seleccionadas en la lista
-            for (let beverageId in beverageCount) {
-                let beverageName = $('#multi-select2').find(`option[value='${beverageId}']`).text();
-                let listItem = $('<li class="list-group-item"></li>').text(`${beverageName} - Cantidad: ${beverageCount[beverageId]}`);
-                let addButton = $('<button type="button" class="btn btn-sm btn-primary ml-2">+</button>');
-
-                // Agregar evento al botón para incrementar la cantidad
-                addButton.on('click', function() {
-                    beverageCount[beverageId]++;
-                    listItem.text(`${beverageName} - Cantidad: ${beverageCount[beverageId]}`);
-                });
-
-                // Agregar el botón al elemento de la lista
-                listItem.append(addButton);
-                beverageList.append(listItem);
-            }
-        });
-    });
-</script>
 <script>
     $('.select2').select2(
         {
@@ -580,7 +537,7 @@
 
     function registroDelete(id) {
         $.ajax({
-            url: "/distrito/delete/" + id,
+            url: "/reserva/delete/" + id,
             type: "DELETE",
             success: function (response) {
                 alert(response);
