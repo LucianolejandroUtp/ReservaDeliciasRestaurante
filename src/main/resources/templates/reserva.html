@@ -496,7 +496,7 @@
 <script th:inline="javascript">
     function modalFill(id) {
         $.ajax({
-            url: '/distrito/' + id,
+            url: '/reserva/' + id,
             method: 'GET',
             success: function (data) {
                 $('#updateId').val(data.id);

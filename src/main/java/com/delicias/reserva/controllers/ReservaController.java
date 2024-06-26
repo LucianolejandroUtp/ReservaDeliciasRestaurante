@@ -1,5 +1,6 @@
 package com.delicias.reserva.controllers;
 
+import com.delicias.reserva.modelos.Distritos;
 import com.delicias.reserva.modelos.Mesas;
 import com.delicias.reserva.modelos.Reservas;
 import com.delicias.reserva.modelos.Usuarios;
@@ -87,6 +88,15 @@ public class ReservaController {
         reservaService.saveReserva(miReserva);
 
         return "redirect:/distrito/lista";
+    }
+
+    // Método para obtener los datos de un distrito por ID (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Reservas> obtenerReserva(@PathVariable Long id) {
+        Reservas reserva = reservaService.getReservaById(id);
+//                .orElseThrow(() -> new IllegalArgumentException("Distrito inválido Id:" + id));
+        return ResponseEntity.ok(reserva); // Devolver los datos del distrito en formato JSON
     }
 
     @DeleteMapping("/delete/{id}")
