@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -97,6 +98,42 @@ public class ReservaController {
         Reservas reserva = reservaService.getReservaById(id);
 //                .orElseThrow(() -> new IllegalArgumentException("Distrito inválido Id:" + id));
         return ResponseEntity.ok(reserva); // Devolver los datos del distrito en formato JSON
+    }
+
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Reservas miObjeto) {
+        Reservas reservaDB = reservaService.getReservaById(id);
+        Mesas mesaDB = mesaService.getMesaById(miObjeto.getMesas().getId());
+        Usuarios usuarioDB = usuarioService.getUsuarioById(miObjeto.getUsuarios().getId());
+
+        System.out.println("Objeto: " + miObjeto.toString());
+        System.out.println("Entrando al update de reserva");
+        // if (reservaDB.getDescripcion() == null || reservaDB.getDescripcion().isEmpty() || reservaDB.getDescripcion().isBlank() || reservaDB.getDescripcion() != distrito.getDescripcion()) {
+        //     reservaDB.setDescripcion(distrito.getDescripcion());
+        // }
+        if (reservaDB.getFecha() == null || reservaDB.getFecha() != miObjeto.getFecha()) {
+            reservaDB.setFecha(miObjeto.getFecha());
+        }
+        if (reservaDB.getHora() == null || reservaDB.getHora() != miObjeto.getHora()) {
+            reservaDB.setHora(miObjeto.getHora());
+        }
+        if (reservaDB.getNroPersonas() == null || reservaDB.getNroPersonas() != miObjeto.getNroPersonas()) {
+            reservaDB.setNroPersonas(miObjeto.getNroPersonas());
+        }
+        if (reservaDB.getEstado() == null || reservaDB.getEstado() != miObjeto.getEstado()) {
+            reservaDB.setEstado(miObjeto.getEstado());
+        }
+        if (!reservaDB.getMesas().equals(mesaDB)) {
+            reservaDB.setMesas(mesaDB);
+        }
+        if (!reservaDB.getUsuarios().equals(usuarioDB)) {
+            reservaDB.setUsuarios(usuarioDB);
+        }
+        System.out.println("Reserva actualizada: " + reservaDB.getNroPersonas() + " - " + reservaDB.getId());
+
+        reservaService.updateReserva(reservaDB);
+        return ResponseEntity.ok("Actualización exitosa");
     }
 
     @DeleteMapping("/delete/{id}")
