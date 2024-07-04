@@ -63,9 +63,6 @@
                                             <!--                                            <th></th>-->
                                             <th>#</th>
                                             <th>Nombre</th>
-                                            <th>Reservación</th>
-                                            <th>Personas</th>
-                                            <th>Nro. Mesa</th>
                                             <th>Estado</th>
                                             <th>Creado</th>
                                             <th>Editado</th>
@@ -73,16 +70,12 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="obj : ${reservas}">
+                                        <tr th:each="obj : ${roles}">
                                             <td th:text="${obj.id}"></td>
-                                            <td th:text="|${obj.usuarios.apellidoPat} - ${obj.usuarios.nombres}|"></td>
-                                            <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} - ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
-<!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
-                                            <td th:text="${obj.nroPersonas}"></td>
-                                            <td th:text="${obj.mesas.nroMesa}"></td>
+                                            <td th:text="${obj.descripcion}"></td>
                                             <td th:text="${obj.estado}"></td>
-                                            <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
-                                            <td th:text="${obj.updatedAt}"></td>
+                                            <td th:text="${#temporals.format(obj.createdAt, 'dd-MMM-yyyy')}"></td>
+                                            <td th:text="${#temporals.format(obj.updatedAt, 'dd-MMM-yyyy')}"></td>
                                             <td>
                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
