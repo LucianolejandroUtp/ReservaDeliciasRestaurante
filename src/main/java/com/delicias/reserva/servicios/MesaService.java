@@ -1,7 +1,7 @@
 package com.delicias.reserva.servicios;
 
 import com.delicias.reserva.modelos.Mesas;
-import com.delicias.reserva.repositorios.MesasRepository;
+import com.delicias.reserva.repositorios.MesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class MesaService {
 
     @Autowired
-    private MesasRepository mesaRepository;
+    private MesaRepository mesaRepository;
 
     public List<Mesas> getAllMesas() {
         return mesaRepository.findAll();
