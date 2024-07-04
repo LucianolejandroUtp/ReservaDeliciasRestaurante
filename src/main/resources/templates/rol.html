@@ -116,28 +116,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/reserva/create}" method="post" id="form-create">
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="dato1">Fecha</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control drgpicker" id="dato1" name="dato1" value="06/24/2024" aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="dato2">Hora</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control time-input" id="dato2" name="dato2" placeholder="" aria-describedby="button-addon2">
-                            </div>
-                        </div>
-                    </div>
-
+                <form th:action="@{/rol/create}" method="post" id="form-create">
                     <div class="form-group">
-                        <label for="dato3">Nro. de Personas</label>
-                        <input type="text" id="dato3" name="dato3" class="form-control">
+                        <label for="createDato01">Descripción</label>
+                        <input type="text" id="createDato01" name="createDato01" class="form-control">
                     </div>
 <!--                    <div class="form-group">-->
 <!--                        <label for="dato4">Bebidas</label>-->
@@ -164,18 +146,18 @@
 <!--                        <label for="dato66">Usuarios</label>-->
 <!--                        <input type="text" id="dato66" name="dato66" class="form-control">-->
 <!--                    </div>-->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="dato6">Usuarios</label>
                         <select class="form-control select2" id="dato6" name="dato6">
                                 <option th:each="usr : ${usuarios}" th:value="${usr.id}" th:text="|${usr.apellidoPat} - ${usr.nombres}|"></option>
                         </select>
-                    </div> <!-- form-group -->
+                    </div>
                     <div class="form-group">
                         <label for="dato7">Mesas</label>
                         <select class="form-control select2" id="dato7" name="dato7">
                             <option th:each="m : ${mesas}" th:value="${m.id}" th:text="|Nro. ${m.nroMesa} - Capacidad:${m.capacidad} - Estado:${m.estado}|"></option>
                         </select>
-                    </div> <!-- form-group -->
+                    </div> -->
 
                     <div class="modal-footer">
                         <button type="submit" class="btn mb-2 btn-primary">Guardar</button>

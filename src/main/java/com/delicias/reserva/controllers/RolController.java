@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.delicias.reserva.modelos.Roles;
 import com.delicias.reserva.servicios.RolService;
@@ -24,5 +26,13 @@ public class RolController {
         List<Roles> roles = rolService.getAllRoles();
         model.addAttribute("roles", roles);
         return "rol";
+    }
+
+    @PostMapping("/create")
+    public String create(@RequestParam(name ="createRol", required = false, defaultValue = "Mundo") String createRol, Model model) {
+        Roles miRol = new Roles();
+        miRol.setDescripcion(createRol);
+        rolService.saveRol(miRol);
+        return "redirect:/rol/lista";
     }
 }
