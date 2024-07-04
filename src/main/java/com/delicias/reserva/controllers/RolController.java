@@ -40,7 +40,12 @@ public class RolController {
         return "redirect:/rol/lista";
     }
 
-
+@GetMapping("/{id}")
+@ResponseBody
+public ResponseEntity<Roles> obtenerRol(@PathVariable Long id) {
+    Roles rol = rolService.getRolById(id);
+    return ResponseEntity.ok(rol);
+}
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
