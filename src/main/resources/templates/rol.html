@@ -455,21 +455,13 @@
         var id = $("#updateDato01").val();
         var miObjeto = {
             id: id,
-            fecha: $("#updateDato02").val(),
-            hora: $("#updateDato03").val(),
-            nroPersonas: $("#updateDato04").val(),
+            descripcion: $("#updateDato02").val(),
             estado: $("#updateDato05").val(),
-            usuarios: {
-                id: $("#updateDato06").val()
-            },
-            mesas: {
-                id: $("#updateDato07").val()
-            }
         };
         console.log(miObjeto);
 
         $.ajax({
-            url: "/reserva/update/" + id,
+            url: "/rol/update/" + id,
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(miObjeto),

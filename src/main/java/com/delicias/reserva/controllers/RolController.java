@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,6 +46,25 @@ public class RolController {
 public ResponseEntity<Roles> obtenerRol(@PathVariable Long id) {
     Roles rol = rolService.getRolById(id);
     return ResponseEntity.ok(rol);
+}
+
+@PostMapping("/update/{id}")
+@ResponseBody
+public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Roles miObjeto) {
+    Roles rolDB = rolService.getRolById(id);
+
+    System.out.println("Objeto: " + miObjeto.toString());
+    System.out.println("Entrando al update de reserva");
+
+    if (rolDB.getDescripcion() == null || rolDB.getDescripcion() != miObjeto.getDescripcion()) {
+        rolDB.setDescripcion(miObjeto.getDescripcion());
+    }
+    if(rolDB.getEstado() == null || rolDB.getEstado() != miObjeto.getEstado()) {
+        rolDB.setEstado(miObjeto.getEstado());
+    }
+
+    rolService.saveRol(rolDB);
+    return ResponseEntity.ok("Actualización exitosa");
 }
 
     @DeleteMapping("/delete/{id}")
