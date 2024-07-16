@@ -39,6 +39,28 @@ public class CategoriaController {
         return "redirect:/categoria/lista";
     }
 
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Categorias> obtenerCategoria(@PathVariable Long id) {
+        Categorias categoria = categoriaService.getCategoriaById(id);
+        return ResponseEntity.ok(categoria);
+    }
+
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Categorias miObjeto) {
+        Categorias categoriaDB = categoriaService.getCategoriaById(id);
+
+        System.out.println("Objeto: " + miObjeto.toString());
+        System.out.println("Entrando al update de categoria");
+
+        if (categoriaDB.getDescripcion() == null || categoriaDB.getDescripcion() != miObjeto.getDescripcion()) {
+            categoriaDB.setDescripcion(miObjeto.getDescripcion());
+            categoriaService.saveCategoria(categoriaDB);
+        }
+        return ResponseEntity.ok("Actualización exitosa");
+    }
+
     @DeleteMapping("/delete/{id}")
     @ResponseBody
     public ResponseEntity<?> delete(@PathVariable Long id) {

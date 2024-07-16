@@ -434,7 +434,7 @@
 <script th:inline="javascript">
     function modalFill(id) {
         $.ajax({
-            url: '/rol/' + id,
+            url: '/categoria/' + id,
             method: 'GET',
             success: function (data) {
                 console.log(data);
@@ -461,7 +461,7 @@
         console.log(miObjeto);
 
         $.ajax({
-            url: "/rol/update/" + id,
+            url: "/categoria/update/" + id,
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(miObjeto),
