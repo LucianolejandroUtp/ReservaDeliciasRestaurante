@@ -6,6 +6,7 @@ create table mesas
     id          BIGINT not null auto_increment primary key,
     nro_mesa    INT    not null,
     capacidad   INT    not null,
+    disponibilidad enum ('DISPONIBLE', 'OCUPADA', 'RESERVADA') null default 'DISPONIBLE',
     estado      enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') null default 'ACTIVO',
     created_at  TIMESTAMP null default current_timestamp,
     updated_at  TIMESTAMP null on update current_timestamp
