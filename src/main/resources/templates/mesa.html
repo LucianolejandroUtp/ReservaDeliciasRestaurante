@@ -62,7 +62,8 @@
                                         <tr>
                                             <!--                                            <th></th>-->
                                             <th>#</th>
-                                            <th>Nombre</th>
+                                            <th>Capacidad</th>
+                                            <th>Disponible</th>
                                             <th>Estado</th>
                                             <th>Creado</th>
                                             <th>Editado</th>
@@ -70,9 +71,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="obj : ${categorias}">
-                                            <td th:text="${obj.id}"></td>
-                                            <td th:text="${obj.descripcion}"></td>
+                                        <tr th:each="obj : ${mesas}">
+                                            <!-- <td th:text="${obj.id}"></td> -->
+                                            <td th:text="${obj.nroMesa}"></td>
+                                            <td th:text="${obj.capacidad}"></td>
+                                            <td th:text="${obj.disponibilidad}"></td>
                                             <td th:text="${obj.estado}"></td>
                                             <td th:text="${#temporals.format(obj.createdAt, 'dd-MMM-yyyy')}"></td>
                                             <td th:text="${#temporals.format(obj.updatedAt, 'dd-MMM-yyyy')}"></td>
@@ -116,7 +119,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/categoria/create}" method="post" id="form-create">
+                <form th:action="@{/mesa/create}" method="post" id="form-create">
                     <div class="form-group">
                         <label for="createDato01">Descripción</label>
                         <input type="text" id="createDato01" name="createDato01" class="form-control">
