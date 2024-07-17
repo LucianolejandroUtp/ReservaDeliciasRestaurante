@@ -1,6 +1,5 @@
 package com.delicias.reserva.controllers;
 
-import com.delicias.reserva.modelos.Distritos;
 import com.delicias.reserva.modelos.Mesas;
 import com.delicias.reserva.modelos.Reservas;
 import com.delicias.reserva.modelos.Usuarios;
