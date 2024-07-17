@@ -44,6 +44,13 @@ public class MesaController {
         return "redirect:/mesa/lista";
     }
 
+    //Método para obtener los datos de una mesa por su id (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Mesas> getMesaById(@PathVariable Long id) {
+        Mesas mesa = mesaService.getMesaById(id);
+        return ResponseEntity.ok(mesa);
+    }
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
