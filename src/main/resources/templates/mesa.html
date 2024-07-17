@@ -484,13 +484,15 @@
         var id = $("#updateDato01").val();
         var miObjeto = {
             id: id,
-            descripcion: $("#updateDato02").val(),
+            nroMesa: $("#updateDato02").val(),
+            capacidad: $("#updateDato03").val(),
+            disponibilidad: $("#updateDato04").val(),
             estado: $("#updateDato05").val(),
         };
         console.log(miObjeto);
 
         $.ajax({
-            url: "/categoria/update/" + id,
+            url: "/mesa/update/" + id,
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(miObjeto),
