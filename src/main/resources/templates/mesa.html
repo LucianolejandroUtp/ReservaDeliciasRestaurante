@@ -130,7 +130,11 @@
                     </div>
                     <div class="form-group">
                         <label for="createDato03">Disponibilidad de la Mesa</label>
-                        <input type="text" id="createDato03" name="createDato03" class="form-control">
+                        <select class="form-control" id="createDato03" name="createDato03">
+                            <option value="DISPONIBLE">Disponible</option>
+                            <option value="OCUPADA">Ocupada</option>
+                            <option value="RESERVADA">Reservada</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn mb-2 btn-primary">Guardar</button>
@@ -162,10 +166,22 @@
                         <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
                     </div>
                     <div class="form-group">
-                        <label for="updateDato02">Descripción</label>
+                        <label for="updateDato02">Número de Mesa</label>
                         <input type="text" id="updateDato02" name="updateDato02" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label for="updateDato03">Capacidad de la Mesa</label>
+                        <input type="text" id="updateDato03" name="updateDato03" class="form-control">
+                    </div>
                    
+                    <div class="form-group">
+                        <label for="updateDato04">Disponibilidad de la Mesa</label>
+                        <select class="form-control" id="updateDato04" name="updateDato04">
+                            <option value="DISPONIBLE">Disponible</option>
+                            <option value="OCUPADA">Ocupada</option>
+                            <option value="RESERVADA">Reservada</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="updateDato05">Estado</label>
                         <select class="form-control" id="updateDato05" name="updateDato05">
@@ -445,12 +461,14 @@
 <script th:inline="javascript">
     function modalFill(id) {
         $.ajax({
-            url: '/categoria/' + id,
+            url: '/mesa/' + id,
             method: 'GET',
             success: function (data) {
                 console.log(data);
                 $('#updateDato01').val(data.id);
-                $('#updateDato02').val(data.descripcion);
+                $('#updateDato02').val(data.nroMesa);
+                $('#updateDato03').val(data.capacidad);
+                $('#updateDato04').val(data.disponibilidad);
                
                 $('#updateDato05').val(data.estado);
 
