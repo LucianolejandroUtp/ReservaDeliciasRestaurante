@@ -31,6 +31,19 @@ public class Mesas {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @ColumnDefault("'DISPONIBLE'")
+    @Lob
+    @Column(name = "disponibilidad")
+    private String disponibilidad;
+
+    public String getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(String disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
     public Long getId() {
         return id;
     }
