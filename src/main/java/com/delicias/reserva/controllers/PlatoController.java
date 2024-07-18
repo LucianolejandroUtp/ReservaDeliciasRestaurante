@@ -76,7 +76,7 @@ public class PlatoController {
     @PostMapping("/update/{id}")
     @ResponseBody
     public  ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Platos miObjeto) {
-        Platos platoDB = platoService.getPlatoById(id);;
+        Platos platoDB = platoService.getPlatoById(id);
         Categorias categoriaDB = categoriaService.getCategoriaById(miObjeto.getCategorias().getId());
 
         if (platoDB.getNombre() == null || platoDB.getNombre().isEmpty() || platoDB.getNombre() != miObjeto.getNombre()) {
