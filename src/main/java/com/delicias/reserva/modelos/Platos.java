@@ -30,11 +30,6 @@ public class Platos {
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
-    @ColumnDefault("'DISPONIBLE'")
-    @Lob
-    @Column(name = "disponible", nullable = false)
-    private String disponible;
-
     @ColumnDefault("0")
     @Column(name = "stock", nullable = false)
     private Integer stock;

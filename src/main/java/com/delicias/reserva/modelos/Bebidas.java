@@ -30,10 +30,6 @@ public class Bebidas {
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
 
-    @ColumnDefault("1")
-    @Column(name = "disponible", nullable = false)
-    private Boolean disponible = false;
-
     @ColumnDefault("0")
     @Column(name = "stock", nullable = false)
     private Integer stock;
