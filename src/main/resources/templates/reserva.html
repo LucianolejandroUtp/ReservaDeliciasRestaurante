@@ -528,6 +528,9 @@
                 $('#updateDato04').val(data.nroPersonas);
                 $('#updateDato05').val(data.estado);
 
+                $('#updateDato06').val(data.usuarios.id);
+                $('#updateDato07').val(data.mesas.id);
+
                 $('#updateModal').modal('show'); // Mostrar el modal
             },
             error: function (error) {
