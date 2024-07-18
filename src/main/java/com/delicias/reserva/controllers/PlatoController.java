@@ -58,7 +58,7 @@ public class PlatoController {
         miPlato.setNombre(dato01);
         miPlato.setDescripcion(dato02);
         miPlato.setPrecio(dato03);
-        miPlato.setDisponible(dato06);
+        // miPlato.setDisponible(dato06);
         miPlato.setStock(dato04);
         miPlato.setCategorias(miCategoria);
         platoService.savePlato(miPlato);
@@ -91,9 +91,9 @@ public class PlatoController {
         if (platoDB.getStock() == null || platoDB.getStock() != miObjeto.getStock()) {
             platoDB.setStock(miObjeto.getStock());
         }
-        if (platoDB.getDisponible() == null || platoDB.getDisponible().isEmpty() || platoDB.getDisponible() != miObjeto.getDisponible()) {
-            platoDB.setDisponible(miObjeto.getDisponible());
-        }
+        // if (platoDB.getDisponible() == null || platoDB.getDisponible().isEmpty() || platoDB.getDisponible() != miObjeto.getDisponible()) {
+        //     platoDB.setDisponible(miObjeto.getDisponible());
+        // }
         if (platoDB.getEstado() == null || platoDB.getEstado().isEmpty() || platoDB.getEstado() != miObjeto.getEstado()) {
             platoDB.setEstado(miObjeto.getEstado());
         }
