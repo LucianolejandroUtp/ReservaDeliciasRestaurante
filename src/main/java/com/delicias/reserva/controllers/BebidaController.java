@@ -63,6 +63,14 @@ public class BebidaController {
         return "redirect:/bebida/lista";
     }
 
+    //Método para obtener los datos de un plato por ID (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<?> obtenerBebida(@PathVariable Long id){
+        Bebidas bebida = bebidaService.getBebidaById(id);
+        return ResponseEntity.ok(bebida);
+    }
+
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
