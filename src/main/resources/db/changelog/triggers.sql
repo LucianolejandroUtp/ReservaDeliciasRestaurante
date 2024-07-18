@@ -229,17 +229,3 @@ BEGIN
 END//
 DELIMITER ;
 
-
-
-DELIMITER //
-CREATE TRIGGER tri_platos_disponible
-    BEFORE UPDATE
-    ON platos FOR EACH ROW
-BEGIN
-    IF NEW.stock = 0 THEN
-        SET NEW.disponible = 0;
-    ELSE
-        SET NEW.disponible = 1;
-    END IF;
-END//
-DELIMITER ;
