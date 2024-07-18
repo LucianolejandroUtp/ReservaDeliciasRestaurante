@@ -137,7 +137,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/plato/create}" method="post" id="form-create">
+                    <form th:action="@{/bebida/create}" method="post" id="form-create">
                         <div class="form-group">
                             <label for="createDato01">Nombre</label>
                             <input type="text" id="createDato01" name="createDato01" class="form-control">
@@ -559,7 +559,7 @@
 
         function registroDelete(id) {
             $.ajax({
-                url: "/plato/delete/" + id,
+                url: "/bebida/delete/" + id,
                 type: "DELETE",
                 success: function (response) {
                     alert(response);
