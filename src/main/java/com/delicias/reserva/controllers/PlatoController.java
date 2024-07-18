@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,6 +73,38 @@ public class PlatoController {
         return ResponseEntity.ok(plato);
     }
 
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public  ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Platos miObjeto) {
+        Platos platoDB = platoService.getPlatoById(id);;
+        Categorias categoriaDB = categoriaService.getCategoriaById(miObjeto.getCategorias().getId());
+
+        if (platoDB.getNombre() == null || platoDB.getNombre().isEmpty() || platoDB.getNombre() != miObjeto.getNombre()) {
+            platoDB.setNombre(miObjeto.getNombre());
+        }
+        if (platoDB.getDescripcion() == null || platoDB.getDescripcion().isEmpty() || platoDB.getDescripcion() != miObjeto.getDescripcion()) {
+            platoDB.setDescripcion(miObjeto.getDescripcion());
+        }
+        if (platoDB.getPrecio() == null || platoDB.getPrecio().compareTo(miObjeto.getPrecio()) != 0) {
+            platoDB.setPrecio(miObjeto.getPrecio());
+        }
+        if (platoDB.getStock() == null || platoDB.getStock() != miObjeto.getStock()) {
+            platoDB.setStock(miObjeto.getStock());
+        }
+        if (platoDB.getDisponible() == null || platoDB.getDisponible().isEmpty() || platoDB.getDisponible() != miObjeto.getDisponible()) {
+            platoDB.setDisponible(miObjeto.getDisponible());
+        }
+        if (platoDB.getEstado() == null || platoDB.getEstado().isEmpty() || platoDB.getEstado() != miObjeto.getEstado()) {
+            platoDB.setEstado(miObjeto.getEstado());
+        }
+        if (!platoDB.getCategorias().equals(categoriaDB)) {
+            platoDB.setCategorias(categoriaDB);
+        }
+
+        platoService.updatePlato(platoDB);
+
+        return ResponseEntity.ok("Actualización exitosa");
+    }
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
