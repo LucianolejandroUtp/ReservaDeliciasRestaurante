@@ -69,7 +69,7 @@
                                                     <th>Nombre</th>
                                                     <th>Descripción</th>
                                                     <th>Precio</th>
-                                                    <th>Disponible</th>
+                                                    <!-- <th>Disponible</th> -->
                                                     <th>Stock</th>
                                                     <th>Categoría</th>
                                                     <th>Estado</th>
@@ -84,7 +84,7 @@
                                                     <td th:text="${obj.nombre}"></td>
                                                     <td th:text="${obj.descripcion}"></td>
                                                     <td th:text="${obj.precio}"></td>
-                                                    <td th:text="${obj.disponible}"></td>
+                                                    <!-- <td th:text="${obj.disponible}"></td> -->
                                                     <td th:text="${obj.stock}"></td>
                                                     <td th:text="${obj.categorias.descripcion}"></td>
                                                     <td th:text="${obj.estado}"></td>
@@ -158,13 +158,13 @@
                         <label for="createDato04">Disponibilidad</label>
                         <input type="text" id="createDato04" name="createDato04" class="form-control">
                     </div> -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="createDato06">Disponibilidad</label>
                             <select class="form-control" id="createDato06" name="createDato06">
                                 <option value="DISPONIBLE">Disponible</option>
                                 <option value="NO_DISPONIBLE">Ocupada</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="createDato10">Categoría</label>
                             <select class="form-control select2" id="createDato10" name="createDato10">
@@ -218,13 +218,13 @@
                             <label for="updateDato05">Stock</label>
                             <input type="text" id="updateDato05" name="updateDato05" class="form-control">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="updateDato06">Disponibilidad</label>
                             <select class="form-control" id="updateDato06" name="updateDato06">
                                 <option value="DISPONIBLE">Disponible</option>
                                 <option value="NO_DISPONIBLE">No disponible</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="updateDato09">Categoría</label>
                             <select class="form-control" id="updateDato09" name="updateDato09">
@@ -510,7 +510,7 @@
                     $('#updateDato03').val(data.descripcion);
                     $('#updateDato04').val(data.precio);
                     $('#updateDato05').val(data.stock);
-                    $('#updateDato06').val(data.disponible);
+                    // $('#updateDato06').val(data.disponible);
 
                     $('#updateDato09').val(data.categorias.id);
                     $('#updateDato10').val(data.estado);
@@ -531,7 +531,7 @@
                 descripcion: $("#updateDato03").val(),
                 precio: $("#updateDato04").val(),
                 stock: $("#updateDato05").val(),
-                disponible: $("#updateDato06").val(),
+                // disponible: $("#updateDato06").val(),
                 categorias: {
                     id: $("#updateDato09").val()
                 },
