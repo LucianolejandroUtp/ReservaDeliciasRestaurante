@@ -16,4 +16,16 @@ public class BebidaService {
     public List<Bebidas> getAllBebidas() {
         return bebidaRepository.findAll();
     }
+    public Bebidas getBebidaById(Long id) {
+        return bebidaRepository.findById(id).orElse(null);
+    }
+    public void saveBebida(Bebidas bebida) {
+        bebidaRepository.save(bebida);
+    }
+    public void updateBebida(Bebidas bebida) {
+        bebidaRepository.save(bebida);
+    }
+    public void deleteBebida(Long id) {
+        bebidaRepository.deleteById(id);
+    }
 }
