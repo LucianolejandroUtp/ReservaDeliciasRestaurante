@@ -45,7 +45,7 @@ public class PlatoController {
             @RequestParam(name = "createDato03", required = false) BigDecimal dato03,
             @RequestParam(name = "createDato04", required = false) Integer dato04,
             @RequestParam(name = "createDato05", required = false) Integer dato05,
-            @RequestParam(name = "createDato06", required = false) Boolean dato06,
+            @RequestParam(name = "createDato06", required = false) String dato06,
             @RequestParam(name = "createDato07", required = false) String dato07,
             @RequestParam(name = "createDato08", required = false) String dato08,
             @RequestParam(name = "createDato09", required = false) String dato09,
@@ -62,6 +62,14 @@ public class PlatoController {
         miPlato.setCategorias(miCategoria);
         platoService.savePlato(miPlato);
         return "redirect:/plato/lista";
+    }
+
+    //Método para obtener los datos de un plato por ID (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<Platos> obtenerPlato(@PathVariable Long id) {
+        Platos plato = platoService.getPlatoById(id);
+        return ResponseEntity.ok(plato);
     }
 
 
