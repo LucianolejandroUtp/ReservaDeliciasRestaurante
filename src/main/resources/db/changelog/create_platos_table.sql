@@ -6,7 +6,6 @@ CREATE TABLE
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT NOT NULL,
         precio DECIMAL(10, 2) NOT NULL,
-        disponible enum ('DISPONIBLE', 'NO_DISPONIBLE') NOT NULL DEFAULT 'DISPONIBLE',
         stock INT NOT NULL DEFAULT 0,
         estado enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL DEFAULT 'ACTIVO',
         created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
