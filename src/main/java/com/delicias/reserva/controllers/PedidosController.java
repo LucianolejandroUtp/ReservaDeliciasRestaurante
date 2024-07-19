@@ -68,6 +68,15 @@ public class PedidosController {
         return "redirect:/pedido/lista";
     }
 
+    //Método para obtener los datos de un plato por ID (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<?> obtenerPedido(@PathVariable Long id){
+        Pedidos pedido = pedidoService.getPedidoById(id);
+        return ResponseEntity.ok(pedido);
+    }
+
+
     @DeleteMapping("/delete/{id}")
     @ResponseBody
     public ResponseEntity<?> delete(@PathVariable Long id) {
