@@ -65,7 +65,7 @@
                                             <th>Nombre</th>
                                             <th>Reservación</th>
                                             <th>Personas</th>
-                                            <th>Nro. Mesa</th>
+                                            <th>N° Mesa (Cant.)</th>
                                             <th>Estado</th>
                                             <th>Creado</th>
                                             <th>Editado</th>
@@ -79,7 +79,7 @@
                                             <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} - ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
 <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
                                             <td th:text="${obj.nroPersonas}"></td>
-                                            <td th:text="${obj.mesas.nroMesa}"></td>
+                                            <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
                                             <td th:text="${obj.estado}"></td>
                                             <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
                                             <td th:text="${obj.updatedAt}"></td>
