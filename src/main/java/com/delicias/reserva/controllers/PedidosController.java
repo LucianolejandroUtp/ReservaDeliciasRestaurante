@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -76,6 +77,30 @@ public class PedidosController {
         return ResponseEntity.ok(pedido);
     }
 
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public ResponseEntity<?> update (@PathVariable(name= "id") Long id, @RequestBody Pedidos miObjeto){
+        Pedidos pedidoDB = pedidoService.getPedidoById(id);
+        Reservas reservaDB = reservaService.getReservaById(miObjeto.getReservas().getId());
+        Platos platoDB = platoService.getPlatoById(miObjeto.getPlatos().getId());
+        Bebidas bebidaDB = bebidaService.getBebidaById(miObjeto.getBebidas().getId());
+
+        if (pedidoDB.getEstado() == null || pedidoDB.getEstado().isEmpty() || pedidoDB.getEstado() != miObjeto.getEstado()){
+            pedidoDB.setEstado(miObjeto.getEstado());
+        }
+        if (!pedidoDB.getReservas().equals(reservaDB)){
+            pedidoDB.setReservas(reservaDB);
+        }
+        if (!pedidoDB.getPlatos().equals(platoDB)){
+            pedidoDB.setPlatos(platoDB);
+        }
+        if (!pedidoDB.getBebidas().equals(bebidaDB)){
+            pedidoDB.setBebidas(bebidaDB);
+        }
+        pedidoService.savePedido(pedidoDB);
+        
+        return ResponseEntity.ok("Actualización exitosa");
+    }
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
