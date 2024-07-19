@@ -84,7 +84,7 @@ public class BebidaController {
         if (bebidaDB.getDescripcion() == null || bebidaDB.getDescripcion().isEmpty() || bebidaDB.getDescripcion() != miObjeto.getDescripcion()){
             bebidaDB.setDescripcion(miObjeto.getDescripcion());
         }
-        if (bebidaDB.getPrecio() == null || bebidaDB.getPrecio().equals(0) || bebidaDB.getPrecio() != miObjeto.getPrecio()){
+        if (bebidaDB.getPrecio() == null || bebidaDB.getPrecio() != miObjeto.getPrecio()){
             bebidaDB.setPrecio(miObjeto.getPrecio());
         }
         if (bebidaDB.getStock() == null || bebidaDB.getStock().equals(0) || bebidaDB.getStock() != miObjeto.getStock()){
