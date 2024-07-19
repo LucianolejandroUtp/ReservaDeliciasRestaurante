@@ -235,8 +235,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="updateDato10">Estado</label>
-                            <select class="form-control" id="updateDato10" name="updateDato10">
+                            <label for="updateDato15">Estado</label>
+                            <select class="form-control" id="updateDato15" name="updateDato15">
                                 <option value="ACTIVO">Activo</option>
                                 <option value="INACTIVO">Inactivo</option>
                                 <option value="ELIMINADO">Eliminado</option>
@@ -530,21 +530,23 @@
             var id = $("#updateDato01").val();
             var miObjeto = {
                 id: id,
-                nombre: $("#updateDato02").val(),
-                descripcion: $("#updateDato03").val(),
-                precio: $("#updateDato04").val(),
-                stock: $("#updateDato05").val(),
                 // disponible: $("#updateDato06").val(),
-                categorias: {
-                    id: $("#updateDato09").val()
+                reservas: {
+                    id: $("#updateDato20").val()
+                },
+                platos: {
+                    id: $("#updateDato21").val()
+                },
+                bebidas: {
+                    id: $("#updateDato22").val()
                 },
 
-                estado: $("#updateDato10").val(),
+                estado: $("#updateDato15").val(),
             };
             console.log(miObjeto);
 
             $.ajax({
-                url: "/bebida/update/" + id,
+                url: "/pedido/update/" + id,
                 type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(miObjeto),
