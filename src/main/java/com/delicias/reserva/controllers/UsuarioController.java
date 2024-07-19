@@ -75,9 +75,12 @@ public class UsuarioController {
 
         miUsuario.setDistritos(miDistrito);
         miUsuario.setRoles(miRol);
-        return "redirect:/usuario/usuarios";
 
+        usuarioService.saveUsuario(miUsuario);
+        return "redirect:/usuario/usuarios";
     }
+
+    
 
 
     @DeleteMapping("/delete/{id}")
