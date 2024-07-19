@@ -68,8 +68,8 @@
                                                     <th>#</th>
                                                     <th>ID Reserva</th>
                                                     <th>Fecha Reserva</th>
-                                                    <th># Personas</th>
-                                                    <th>Mesa</th>
+                                                    <th>N° Personas</th>
+                                                    <th>N° Mesa (Cant.)</th>
                                                     <th>Plato</th>
                                                     <th>Bebida</th>
                                                     <!-- <th>Disponible</th> -->
@@ -85,7 +85,7 @@
                                                     <td th:text="|${obj.reservas.usuarios.email}|"></td>
                                                     <td th:text="${#temporals.format(obj.reservas.fecha, 'dd-MMM-yyyy')}"></td>
                                                     <td th:text="${obj.reservas.nroPersonas}"></td>
-                                                    <td th:text="${obj.reservas.mesas.nroMesa}"></td>
+                                                    <td th:text="|${obj.reservas.mesas.nroMesa} (${obj.reservas.mesas.capacidad})|"></td>
                                                     <td th:text="${obj.platos.nombre}"></td>
                                                     <td th:text="${obj.bebidas.nombre}"></td>
                                                     <td th:text="${obj.estado}"></td>
@@ -138,23 +138,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/bebida/create}" method="post" id="form-create">
-                        <div class="form-group">
-                            <label for="createDato01">Nombre</label>
-                            <input type="text" id="createDato01" name="createDato01" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="createDato02">Descripción</label>
-                            <input type="text" id="createDato02" name="createDato02" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="createDato03">Precio</label>
-                            <input type="text" id="createDato03" name="createDato03" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="createDato04">Stock</label>
-                            <input type="text" id="createDato04" name="createDato04" class="form-control">
-                        </div>
+                    <form th:action="@{/pedido/create}" method="post" id="form-create">
+                        <!-- <div class="form-group">
+                            <label for="createDato20">Reserva</label>
+                            <input type="text" id="createDato20" name="createDato20" class="form-control">
+                        </div> -->
                         <!-- <div class="form-group">
                         <label for="createDato04">Disponibilidad</label>
                         <input type="text" id="createDato04" name="createDato04" class="form-control">
@@ -167,10 +155,24 @@
                             </select>
                         </div> -->
                         <div class="form-group">
-                            <label for="createDato10">Categoría</label>
-                            <select class="form-control select2" id="createDato10" name="createDato10">
-                                <option th:each="c : ${categorias}" th:value="${c.id}"
-                                    th:text="|${c.descripcion} - Estado:${c.estado}|"></option>
+                            <label for="createDato20">Reserva</label>
+                            <select class="form-control select2" id="createDato20" name="createDato20">
+                                <option th:each="c : ${reservas}" th:value="${c.id}"
+                                    th:text="|${c.usuarios.email} - Mesa: ${c.mesas.nroMesa}(${c.mesas.capacidad}) - Fecha: ${c.fecha}|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="createDato21">Platos</label>
+                            <select class="form-control select2" id="createDato21" name="createDato21">
+                                <option th:each="c : ${platos}" th:value="${c.id}"
+                                    th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="createDato22">Bebidas</label>
+                            <select class="form-control select2" id="createDato22" name="createDato22">
+                                <option th:each="c : ${bebidas}" th:value="${c.id}"
+                                    th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
                             </select>
                         </div>
                         <div class="modal-footer">
@@ -229,8 +231,7 @@
                         <div class="form-group">
                             <label for="updateDato09">Categoría</label>
                             <select class="form-control" id="updateDato09" name="updateDato09">
-                                <option th:each="cat : ${categorias}" th:value="${cat.id}"
-                                    th:text="|${cat.descripcion}|"></option>
+                                <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="|${cat.descripcion}|"></option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -560,7 +561,7 @@
 
         function registroDelete(id) {
             $.ajax({
-                url: "/bebida/delete/" + id,
+                url: "/pedido/delete/" + id,
                 type: "DELETE",
                 success: function (response) {
                     alert(response);
