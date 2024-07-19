@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,8 +89,54 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody Usuarios miObjeto){
+        Usuarios usuarioDB = usuarioService.getUsuarioById(id);
+        Distritos distritoDB = distritoService.getDistritoById(miObjeto.getDistritos().getId());
+        Roles rolDB = rolService.getRolById(miObjeto.getRoles().getId());
 
+        if (usuarioDB.getNombres() == null || usuarioDB.getNombres().isEmpty() || usuarioDB.getNombres() != miObjeto.getNombres()){
+            usuarioDB.setNombres(miObjeto.getNombres());
+        }
+        if (usuarioDB.getApellidoPat() == null || usuarioDB.getApellidoPat().isEmpty() || usuarioDB.getApellidoPat() != miObjeto.getApellidoPat()){
+            usuarioDB.setApellidoPat(miObjeto.getApellidoPat());
+        }
+        if (usuarioDB.getApellidoMat() == null || usuarioDB.getApellidoMat().isEmpty() || usuarioDB.getApellidoMat() != miObjeto.getApellidoMat()){
+            usuarioDB.setApellidoMat(miObjeto.getApellidoMat());
+        }
+        if (usuarioDB.getTelefono() == null || usuarioDB.getTelefono().isEmpty() || usuarioDB.getTelefono() != miObjeto.getTelefono()){
+            usuarioDB.setTelefono(miObjeto.getTelefono());
+        }
+        if (usuarioDB.getDireccion() == null || usuarioDB.getDireccion().isEmpty() || usuarioDB.getDireccion() != miObjeto.getDireccion()){
+            usuarioDB.setDireccion(miObjeto.getDireccion());
+        }
+        if (usuarioDB.getReferencia() == null || usuarioDB.getReferencia().isEmpty() || usuarioDB.getReferencia() != miObjeto.getReferencia()){
+            usuarioDB.setReferencia(miObjeto.getReferencia());
+        }
+        if (usuarioDB.getDni() == null || usuarioDB.getDni().isEmpty() || usuarioDB.getDni() != miObjeto.getDni()){
+            usuarioDB.setDni(miObjeto.getDni());
+        }
+        if (usuarioDB.getEmail() == null || usuarioDB.getEmail().isEmpty() || usuarioDB.getEmail() != miObjeto.getEmail()){
+            usuarioDB.setEmail(miObjeto.getEmail());
+        }
+        if (usuarioDB.getPassword() == null || usuarioDB.getPassword().isEmpty() || usuarioDB.getPassword() != miObjeto.getPassword()){
+            usuarioDB.setPassword(miObjeto.getPassword());
+        }
+        if (usuarioDB.getEstado() == null || usuarioDB.getEstado().isEmpty() || usuarioDB.getEstado() != miObjeto.getEstado()){
+            usuarioDB.setEstado(miObjeto.getEstado());
+        }
+        if (!usuarioDB.getDistritos().equals(distritoDB)){
+            usuarioDB.setDistritos(distritoDB);
+        }
+        if (!usuarioDB.getRoles().equals(rolDB)){
+            usuarioDB.setRoles(rolDB);
+        }
+
+        usuarioService.saveUsuario(usuarioDB);
+        
+        return ResponseEntity.ok("Actualización exitosa");
+    }
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody

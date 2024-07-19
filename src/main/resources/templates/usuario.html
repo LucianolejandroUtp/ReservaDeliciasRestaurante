@@ -590,21 +590,27 @@
             var id = $("#updateDato01").val();
             var miObjeto = {
                 id: id,
-                nombre: $("#updateDato02").val(),
-                descripcion: $("#updateDato03").val(),
-                precio: $("#updateDato04").val(),
-                stock: $("#updateDato05").val(),
-                // disponible: $("#updateDato06").val(),
-                categorias: {
-                    id: $("#updateDato09").val()
+                nombres: $("#updateDato02").val(),
+                apellidoPat: $("#updateDato03").val(),
+                apellidoMat: $("#updateDato04").val(),
+                telefono: $("#updateDato05").val(),
+                direccion: $("#updateDato06").val(),
+                referencia: $("#updateDato07").val(),
+                dni: $("#updateDato08").val(),
+                email: $("#updateDato09").val(),
+                password: $("#updateDato10").val(),
+                estado: $("#updateDato15").val(),
+                distritos: {
+                    id: $("#updateDato20").val()
                 },
-
-                estado: $("#updateDato10").val(),
+                roles: {
+                    id: $("#updateDato21").val()
+                },
             };
             console.log(miObjeto);
 
             $.ajax({
-                url: "/bebida/update/" + id,
+                url: "/usuario/update/" + id,
                 type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(miObjeto),
