@@ -205,22 +205,10 @@
                             <label for="updateDato01">Id</label>
                             <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="updateDato02">Nombre</label>
                             <input type="text" id="updateDato02" name="updateDato02" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="updateDato03">Descripción</label>
-                            <input type="text" id="updateDato03" name="updateDato03" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="updateDato04">Precio</label>
-                            <input type="text" id="updateDato04" name="updateDato04" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="updateDato05">Stock</label>
-                            <input type="text" id="updateDato05" name="updateDato05" class="form-control">
-                        </div>
+                        </div> -->
                         <!-- <div class="form-group">
                             <label for="updateDato06">Disponibilidad</label>
                             <select class="form-control" id="updateDato06" name="updateDato06">
@@ -229,9 +217,21 @@
                             </select>
                         </div> -->
                         <div class="form-group">
-                            <label for="updateDato09">Categoría</label>
-                            <select class="form-control" id="updateDato09" name="updateDato09">
-                                <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="|${cat.descripcion}|"></option>
+                            <label for="updateDato20">Reservas</label>
+                            <select class="form-control" id="updateDato20" name="updateDato20">
+                                <option th:each="cat : ${reservas}" th:value="${cat.id}" th:text="|${cat.usuarios.email} - ${cat.mesas.nroMesa} (${cat.mesas.capacidad})|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato21">Platos</label>
+                            <select class="form-control" id="updateDato21" name="updateDato21">
+                                <option th:each="cat : ${platos}" th:value="${cat.id}" th:text="|${cat.nombre} - ${cat.precio} (${cat.stock})|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato22">Bebidas</label>
+                            <select class="form-control" id="updateDato22" name="updateDato22">
+                                <option th:each="cat : ${bebidas}" th:value="${cat.id}" th:text="|${cat.nombre} - ${cat.precio} (${cat.stock})|"></option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -504,19 +504,19 @@
     <script th:inline="javascript">
         function modalFill(id) {
             $.ajax({
-                url: '/bebida/' + id,
+                url: '/pedido/' + id,
                 method: 'GET',
                 success: function (data) {
                     console.log(data);
                     $('#updateDato01').val(data.id);
-                    $('#updateDato02').val(data.nombre);
-                    $('#updateDato03').val(data.descripcion);
-                    $('#updateDato04').val(data.precio);
-                    $('#updateDato05').val(data.stock);
+                    $('#updateDato20').val(data.reservas.id);
+                    $('#updateDato21').val(data.platos.id);
+                    $('#updateDato22').val(data.bebidas.id);
+                    // $('#updateDato05').val(data.stock);
                     // $('#updateDato06').val(data.disponible);
 
-                    $('#updateDato09').val(data.categorias.id);
-                    $('#updateDato10').val(data.estado);
+                    // $('#updateDato09').val(data.categorias.id);
+                    $('#updateDato15').val(data.estado);
 
                     $('#updateModal').modal('show'); // Mostrar el modal
                 },
