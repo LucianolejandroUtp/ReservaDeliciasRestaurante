@@ -80,6 +80,14 @@ public class UsuarioController {
         return "redirect:/usuario/usuarios";
     }
 
+    //Método para obtener los datos de un plato por ID (para el modal de edición)
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<?> obtenerUsuario(@PathVariable Long id){
+        Usuarios usuario = usuarioService.getUsuarioById(id);
+        return ResponseEntity.ok(usuario);
+    }
+
     
 
 

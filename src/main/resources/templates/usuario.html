@@ -232,20 +232,40 @@
                             <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
                         </div>
                         <div class="form-group">
-                            <label for="updateDato02">Nombre</label>
+                            <label for="updateDato02">Nombres</label>
                             <input type="text" id="updateDato02" name="updateDato02" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="updateDato03">Descripción</label>
+                            <label for="updateDato03">Apellido Paterno</label>
                             <input type="text" id="updateDato03" name="updateDato03" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="updateDato04">Precio</label>
+                            <label for="updateDato04">Apellido Materno</label>
                             <input type="text" id="updateDato04" name="updateDato04" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="updateDato05">Stock</label>
+                            <label for="updateDato05">Teléfono</label>
                             <input type="text" id="updateDato05" name="updateDato05" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato06">Dirección</label>
+                            <input type="text" id="updateDato06" name="updateDato06" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato07">Referencia</label>
+                            <input type="text" id="updateDato07" name="updateDato07" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato08">DNI</label>
+                            <input type="text" id="updateDato08" name="updateDato08" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato09">Email</label>
+                            <input type="text" id="updateDato09" name="updateDato09" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato10">Password</label>
+                            <input type="text" id="updateDato10" name="updateDato10" class="form-control">
                         </div>
                         <!-- <div class="form-group">
                             <label for="updateDato06">Disponibilidad</label>
@@ -255,15 +275,22 @@
                             </select>
                         </div> -->
                         <div class="form-group">
-                            <label for="updateDato09">Categoría</label>
-                            <select class="form-control" id="updateDato09" name="updateDato09">
-                                <option th:each="cat : ${categorias}" th:value="${cat.id}"
+                            <label for="updateDato20">Distrito</label>
+                            <select class="form-control" id="updateDato20" name="updateDato20">
+                                <option th:each="cat : ${distritos}" th:value="${cat.id}"
                                     th:text="|${cat.descripcion}|"></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="updateDato10">Estado</label>
-                            <select class="form-control" id="updateDato10" name="updateDato10">
+                            <label for="updateDato21">Rol</label>
+                            <select class="form-control" id="updateDato21" name="updateDato21">
+                                <option th:each="cat : ${roles}" th:value="${cat.id}"
+                                    th:text="|${cat.descripcion}|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato15">Estado</label>
+                            <select class="form-control" id="updateDato15" name="updateDato15">
                                 <option value="ACTIVO">Activo</option>
                                 <option value="INACTIVO">Inactivo</option>
                                 <option value="ELIMINADO">Eliminado</option>
@@ -531,19 +558,25 @@
     <script th:inline="javascript">
         function modalFill(id) {
             $.ajax({
-                url: '/bebida/' + id,
+                url: '/usuario/' + id,
                 method: 'GET',
                 success: function (data) {
                     console.log(data);
                     $('#updateDato01').val(data.id);
-                    $('#updateDato02').val(data.nombre);
-                    $('#updateDato03').val(data.descripcion);
-                    $('#updateDato04').val(data.precio);
-                    $('#updateDato05').val(data.stock);
-                    // $('#updateDato06').val(data.disponible);
+                    $('#updateDato02').val(data.nombres);
+                    $('#updateDato03').val(data.apellidoPat);
+                    $('#updateDato04').val(data.apellidoMat);
+                    $('#updateDato05').val(data.telefono);
+                    $('#updateDato06').val(data.direccion);
+                    $('#updateDato07').val(data.referencia);
+                    $('#updateDato08').val(data.dni);
+                    $('#updateDato09').val(data.email);
+                    $('#updateDato10').val(data.password);
+                    
 
-                    $('#updateDato09').val(data.categorias.id);
-                    $('#updateDato10').val(data.estado);
+                    $('#updateDato15').val(data.estado);
+                    $('#updateDato20').val(data.distritos.id);
+                    $('#updateDato21').val(data.roles.id);
 
                     $('#updateModal').modal('show'); // Mostrar el modal
                 },
