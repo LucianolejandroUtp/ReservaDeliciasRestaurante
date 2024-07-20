@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.delicias.reserva.mail.RegistrationEmailService;
 import com.delicias.reserva.modelos.Distritos;
 import com.delicias.reserva.modelos.Roles;
 import com.delicias.reserva.modelos.Usuarios;
@@ -33,6 +34,9 @@ public class UsuarioController {
     
     @Autowired
     private RolService rolService;
+
+    @Autowired
+    private RegistrationEmailService registrationEmailService;
 
     @GetMapping(path = { "/usuarios", "/lista" })
     public String getAllUsuarios(Model model) {
@@ -77,6 +81,8 @@ public class UsuarioController {
         miUsuario.setRoles(miRol);
 
         usuarioService.saveUsuario(miUsuario);
+        registrationEmailService.sendRegistrationEmail(dato08, dato09);
+        System.out.println("Correo enviado a: " + dato08);
         return "redirect:/usuario/usuarios";
     }
 
