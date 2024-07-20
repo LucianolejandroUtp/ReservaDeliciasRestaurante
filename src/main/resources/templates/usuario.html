@@ -75,7 +75,7 @@
                                                     <th>DNI</th>
                                                     <th>Email</th>
                                                     <!-- <th>Distrito</th> -->
-                                                    <!-- <th>Rol</th> -->
+                                                    <th>Rol</th>
                                                     <!-- <th>Estado</th> -->
                                                     <th>Creado</th>
                                                     <th>Editado</th>
@@ -92,7 +92,7 @@
                                                     <td th:text="${obj.dni}"></td>
                                                     <td th:text="${obj.email}"></td>
                                                     <!-- <td th:text="${obj.distritos.descripcion}"></td> -->
-                                                    <!-- <td th:text="${obj.roles.descripcion}"></td> -->
+                                                    <td th:text="${obj.roles.descripcion}"></td>
                                                     <!-- <td th:text="${obj.estado}"></td> -->
                                                     <td th:text="${#temporals.format(obj.createdAt, 'dd-MMM-yyyy')}">
                                                     </td>
