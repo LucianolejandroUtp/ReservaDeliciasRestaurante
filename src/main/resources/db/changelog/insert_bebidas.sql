@@ -1,6 +1,7 @@
 -- liquibase formatted sql
 -- changeset Lucy:insertBebidasTable
 
+INSERT INTO delicias_rest.bebidas (nombre, descripcion, precio, stock, categorias_id) VALUES ('Ninguna', 'Ninguna', 0, 9999, 4);
 INSERT INTO delicias_rest.bebidas (nombre, descripcion, precio, stock, categorias_id) VALUES ('Coca Cola', 'Coca Cola', 5.00, 100, 4);
 INSERT INTO delicias_rest.bebidas (nombre, descripcion, precio, stock, categorias_id) VALUES ('Inka Cola', 'Inka Cola', 5.00, 100, 4);
 INSERT INTO delicias_rest.bebidas (nombre, descripcion, precio, stock, categorias_id) VALUES ('Fanta', 'Fanta', 5.00, 100, 4);
