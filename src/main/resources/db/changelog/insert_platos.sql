@@ -2,6 +2,8 @@
 -- changeset Lucy:insertPlatosTable
 
 INSERT INTO delicias_rest.platos (nombre, descripcion, precio, stock, categorias_id)
+VALUES ('Ninguno', 'Ninguno', 0, 9999, 2);
+INSERT INTO delicias_rest.platos (nombre, descripcion, precio, stock, categorias_id)
 VALUES ('Ceviche', 'Ceviche de pescado', 25.00, 100, 2);
 INSERT INTO delicias_rest.platos (nombre, descripcion, precio, stock, categorias_id)
 VALUES ('Lomo Saltado', 'Lomo Saltado', 20.00, 100, 2);
