@@ -28,6 +28,7 @@ public class SeguridadConfig {
                 .authorizeHttpRequests(registry ->{
                     registry.requestMatchers("/","/js/**","/css/**","/fonts/**", "/assets/**", "/favicon.ico").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
+                    registry.requestMatchers("/usuario/register").permitAll();
 
                     // registry.requestMatchers("/distrito/**").hasRole("USER");
                     registry.requestMatchers("/reserva/**").hasRole("USER");
@@ -36,7 +37,6 @@ public class SeguridadConfig {
                     registry.requestMatchers("/plato/**").hasRole("USER");
                     registry.requestMatchers("/mesa/**").hasRole("USER");
                     registry.requestMatchers("/usuario/myprofile").hasRole("USER");
-
 
                     registry.requestMatchers("/distrito/**").hasRole("ADMIN");
                     registry.requestMatchers("/reserva/**").hasRole("ADMIN");
