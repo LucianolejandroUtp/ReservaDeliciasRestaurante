@@ -12,9 +12,7 @@
     <!-- Simple bar CSS -->
     <link rel="stylesheet" th:href="@{/css/simplebar.css}">
     <!-- Fonts CSS -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Icons CSS -->
     <link rel="stylesheet" th:href="@{/css/feather.css}">
     <link rel="stylesheet" th:href="@{/css/select2.css}">
@@ -50,8 +48,8 @@
                             </div>
                             <div class="col-md-6 text-right">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn mb-2 btn-primary" data-toggle="modal"
-                                    data-target="#defaultModal"> Add New</button>
+                                <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New</button>
+                                <button type="button" class="btn mb-2 btn-primary" th:onclick="|createModalFill()|"> Add New Function</button>
                             </div>
                         </div>
                         <div class="row my-4">
@@ -94,19 +92,14 @@
                                                     <td th:text="${#temporals.format(obj.updatedAt, 'dd-MMM-yyyy')}">
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-sm dropdown-toggle more-horizontal"
-                                                            type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
+                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="text-muted sr-only">Action</span>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <!-- Button trigger modal -->
 
-                                                            <button type="button" class="btn mb-2 btn-outline-warning"
-                                                                th:onclick="|modalFill(${obj.id})|"> Editar</button>
-                                                            <button type="button" class="btn mb-2 btn-outline-danger"
-                                                                th:onclick="|registroDelete(${obj.id})|">
-                                                                Eliminar</button>
+                                                            <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
+                                                            <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|">Eliminar</button>
                                                             <!--                                                    <a class="dropdown-item" href="#">Edit</a>-->
                                                             <!--                                                    <a class="dropdown-item" href="#">Remove</a>-->
                                                             <!--                                                    <a class="dropdown-item" href="#">Assign</a>-->
@@ -127,8 +120,7 @@
 
 
     <!-- Modal Create-->
-    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -157,22 +149,19 @@
                         <div class="form-group">
                             <label for="createDato20">Reserva</label>
                             <select class="form-control select2" id="createDato20" name="createDato20">
-                                <option th:each="c : ${reservas}" th:value="${c.id}"
-                                    th:text="|${c.usuarios.email} - Mesa: ${c.mesas.nroMesa}(${c.mesas.capacidad}) - Fecha: ${c.fecha}|"></option>
+                                <option th:each="c : ${reservas}" th:value="${c.id}" th:text="|${c.usuarios.email} - Mesa: ${c.mesas.nroMesa}(${c.mesas.capacidad}) - Fecha: ${c.fecha}|"></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="createDato21">Platos</label>
                             <select class="form-control select2" id="createDato21" name="createDato21">
-                                <option th:each="c : ${platos}" th:value="${c.id}"
-                                    th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
+                                <option th:each="c : ${platos}" th:value="${c.id}" th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="createDato22">Bebidas</label>
                             <select class="form-control select2" id="createDato22" name="createDato22">
-                                <option th:each="c : ${bebidas}" th:value="${c.id}"
-                                    th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
+                                <option th:each="c : ${bebidas}" th:value="${c.id}" th:text="|${c.nombre} - S/${c.precio} - Estado:${c.estado}|"></option>
                             </select>
                         </div>
                         <div class="modal-footer">
@@ -189,8 +178,7 @@
     <!-- EndModal Create-->
 
     <!-- Modal Update-->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form id="updateForm">
@@ -516,6 +504,26 @@
                     // $('#updateDato06').val(data.disponible);
 
                     // $('#updateDato09').val(data.categorias.id);
+                    $('#updateDato15').val(data.estado);
+
+                    $('#defaultModal').modal('show'); // Mostrar el modal
+                },
+                error: function (error) {
+                    console.error('Error al obtener los datos del distrito:', error);
+                }
+            });
+        }
+        function createModalFill(id) {
+            $.ajax({
+                url: '/api/user',
+                method: 'GET',
+                success: function (data) {
+                    console.log("estás dentro de la función: createModalFill");
+                    console.log(data);
+                    $('#updateDato01').val(data.id);
+                    $('#updateDato20').val(data.reservas.id);
+                    $('#updateDato21').val(data.platos.id);
+                    $('#updateDato22').val(data.bebidas.id);
                     $('#updateDato15').val(data.estado);
 
                     $('#updateModal').modal('show'); // Mostrar el modal
