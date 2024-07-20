@@ -63,6 +63,7 @@
                                             <!--                                            <th></th>-->
                                             <th>#</th>
                                             <th>Nombre</th>
+                                            <th>Usuario</th>
                                             <th>Reservación</th>
                                             <th>Personas</th>
                                             <th>N° Mesa (Cant.)</th>
@@ -75,8 +76,9 @@
                                         <tbody>
                                         <tr th:each="obj : ${reservas}">
                                             <td th:text="${obj.id}"></td>
-                                            <td th:text="|${obj.usuarios.apellidoPat} - ${obj.usuarios.nombres}|"></td>
-                                            <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} - ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
+                                            <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
+                                            <td th:text="|${obj.usuarios.email}|"></td>
+                                            <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
 <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
                                             <td th:text="${obj.nroPersonas}"></td>
                                             <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
@@ -142,9 +144,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="dato3">Nro. de Personas</label>
                         <input type="text" id="dato3" name="dato3" class="form-control">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="dato3">N° Personas</label>
+                        <select class="form-control" id="dato3" name="dato3">
+                            <option value="1">1 Persona</option>
+                            <option value="2">2 Personas</option>
+                            <option value="3">3 Personas</option>
+                            <option value="4">4 Personas</option>
+                            <option value="5">5 Personas</option>
+                            <option value="6">6 Personas</option>
+                            <option value="7">7 Personas</option>
+                            <option value="8">8 Personas</option>
+                        </select>
                     </div>
 <!--                    <div class="form-group">-->
 <!--                        <label for="dato4">Bebidas</label>-->
@@ -210,6 +225,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="updateDato00">Usuario</label>
+                        <input type="text" id="updateDato00" name="updateDato00" class="form-control" readonly="">
+                    </div>
+                    <div class="form-group">
                         <label for="updateDato01">Id</label>
                         <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
                     </div>
@@ -221,9 +240,22 @@
                         <label for="updateDato03">Hora</label>
                         <input type="text" id="updateDato03" name="updateDato03" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="updateDato04">Nro. Personas</label>
                         <input type="text" id="updateDato04" name="updateDato04" class="form-control">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="updateDato04">N° Personas</label>
+                        <select class="form-control" id="updateDato04" name="updateDato04">
+                            <option value="1">1 Persona</option>
+                            <option value="2">2 Personas</option>
+                            <option value="3">3 Personas</option>
+                            <option value="4">4 Personas</option>
+                            <option value="5">5 Personas</option>
+                            <option value="6">6 Personas</option>
+                            <option value="7">7 Personas</option>
+                            <option value="8">8 Personas</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="updateDato05">Estado</label>
@@ -522,6 +554,7 @@
             method: 'GET',
             success: function (data) {
                 console.log(data);
+                $('#updateDato00').val(data.usuarios.apellidoPat + ', ' + data.usuarios.nombres + ' - ' + data.usuarios.email);
                 $('#updateDato01').val(data.id);
                 $('#updateDato02').val(data.fecha);
                 $('#updateDato03').val(data.hora);
