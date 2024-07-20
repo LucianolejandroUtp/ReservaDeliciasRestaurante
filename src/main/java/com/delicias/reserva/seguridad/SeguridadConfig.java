@@ -28,7 +28,26 @@ public class SeguridadConfig {
                 .authorizeHttpRequests(registry ->{
                     registry.requestMatchers("/","/js/**","/css/**","/fonts/**", "/assets/**", "/favicon.ico").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
+
+                    // registry.requestMatchers("/distrito/**").hasRole("USER");
+                    registry.requestMatchers("/reserva/**").hasRole("USER");
+                    registry.requestMatchers("/pedido/**").hasRole("USER");
+                    registry.requestMatchers("/bebida/**").hasRole("USER");
+                    registry.requestMatchers("/plato/**").hasRole("USER");
+                    registry.requestMatchers("/mesa/**").hasRole("USER");
+                    registry.requestMatchers("/usuario/myprofile").hasRole("USER");
+
+
                     registry.requestMatchers("/distrito/**").hasRole("ADMIN");
+                    registry.requestMatchers("/reserva/**").hasRole("ADMIN");
+                    registry.requestMatchers("/pedido/**").hasRole("ADMIN");
+                    registry.requestMatchers("/rol/**").hasRole("ADMIN");
+                    registry.requestMatchers("/categoria/**").hasRole("ADMIN");
+                    registry.requestMatchers("/bebida/**").hasRole("ADMIN");
+                    registry.requestMatchers("/plato/**").hasRole("ADMIN");
+                    registry.requestMatchers("/mesa/**").hasRole("ADMIN");
+                    registry.requestMatchers("/usuario/**").hasRole("ADMIN");
+
                     registry.anyRequest().authenticated();
                 })
                 .formLogin(httpSecurityFormLoginConfigurer -> {
