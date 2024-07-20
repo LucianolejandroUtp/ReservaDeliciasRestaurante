@@ -29,7 +29,7 @@ public class SeguridadConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/", "/js/**", "/css/**", "/fonts/**", "/assets/**", "/favicon.ico","error").permitAll();
+                    registry.requestMatchers("/", "/js/**","/js2/**", "/css/**", "/fonts/**", "/assets/**", "/favicon.ico","error").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
                     registry.requestMatchers("/usuario/register").permitAll();
 
