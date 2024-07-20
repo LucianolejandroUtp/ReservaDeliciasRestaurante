@@ -87,7 +87,7 @@ public class ReservaController {
 
         reservaService.saveReserva(miReserva);
 
-        return "redirect:/distrito/lista";
+        return "redirect:/reserva/lista";
     }
 
     // Método para obtener los datos de un distrito por ID (para el modal de edición)
