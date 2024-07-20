@@ -226,159 +226,91 @@
 
 
 		<!-- Menu -->
-		<div id="menu" class="section">
+<div id="menu" class="section">
 
-			<!-- Backgound Image -->
-			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background01.jpg)"></div>
-			<!-- /Backgound Image -->
+    <!-- Backgound Image -->
+    <div class="bg-image bg-parallax overlay" style="background-image:url(./img/background01.jpg)"></div>
+    <!-- /Backgound Image -->
 
-			<!-- container -->
-			<div class="container">
+    <!-- container -->
+    <div class="container">
 
-				<!-- row -->
-				<div class="row">
+        <!-- row -->
+        <div class="row">
 
-					<div class="section-header text-center">
-						<h4 class="sub-title">Descubre</h4>
-						<h2 class="title white-text">Nuestro Menu</h2>
-					</div>
+            <div class="section-header text-center">
+                <h4 class="sub-title">Descubre</h4>
+                <h2 class="title white-text">Nuestro Menu</h2>
+            </div>
 
-					<!-- menu nav -->
-					<ul class="menu-nav">
-					  <li class="active"><a data-toggle="tab" href="#menu1">Entradas</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Platos Fuertes</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Bebidas</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Postres</a></li>
-					</ul>
-					<!-- /menu nav -->
+            <!-- menu nav -->
+            <ul class="menu-nav">
+                <li class="active"><a data-toggle="tab" href="#entradas">Entradas</a></li>
+                <li><a data-toggle="tab" href="#platos_fuertes">Platos Fuertes</a></li>
+                <li><a data-toggle="tab" href="#postres">Postres</a></li>
+                <li><a data-toggle="tab" href="#bebidas">Bebidas</a></li>
+            </ul>
+            <!-- /menu nav -->
 
-					<!-- menu content -->
-					<div id="menu-content" class="tab-content">
+            <!-- menu content -->
+            <div id="menu-content" class="tab-content">
 
-						<!-- menu1 -->
-						<div id="menu1" class="tab-pane fade in active">
-							<div class="col-md-6">
+                <!-- entradas -->
+                <div id="entradas" class="tab-pane fade in">
+                    <?php foreach ($menu_items['entradas'] as $item) {?>
+                        <div class="col-md-6">
+                            <!-- single dish -->
+                            <div class="single-dish">
+                                <div class="single-dish-heading">
+                                    <h4 class="name"><?= $item['name']?></h4>
+                                    <h4 class="price"><?= $item['price']?></h4>
+                                </div>
+                                <p><?= $item['description']?></p>
+                            </div>
+                            <!-- /single dish -->
+                        </div>
+                    <?php }?>
+                </div>
+                <!-- /entradas -->
 
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Basted Rhubarb Mussels</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db</p>
-								</div>
-								<!-- /single dish -->
+                <!-- platos fuertes -->
+                <div id="platos_fuertes" class="tab-pane fade in">
+                    <?php foreach ($menu_items['platos_fuertes'] as $item) {?>
+                        <div class="col-md-6">
+                            <!-- single dish -->
+                            <div class="single-dish">
+                                <div class="single-dish-heading">
+                                    <h4 class="name"><?= $item['name']?></h4>
+                                    <h4 class="price"><?= $item['price']?></h4>
+                                </div>
+                                <p><?= $item['description']?></p>
+                            </div>
+                            <!-- /single dish -->
+                        </div>
+                    <?php }?>
+                </div>
+                <!-- /platos fuertes -->
 
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Steamed Chili Moussaka</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db</p>
-								</div>
-								<!-- /single dish -->
+                <!-- postres -->
+                <div id="postres" class="tab-pane fade in">
+                    <?php foreach ($menu_items['postres'] as $item) {?>
+                        <div class="col-md-6">
+                            <!-- single dish -->
+                            <div class="single-dish">
+                                <div class="single-dish-heading">
+                                    <h4 class="name"><?= $item['name']?></h4>
+                                    <h4 class="price"><?= $item['price']?></h4>
+                                </div>
+                                <p><?= $item['description']?></p>
+                            </div>
+                            <!-- /single dish -->
+                        </div>
+                    <?php }?>
+                </div>
+                <!-- /postres -->
 
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Blanched Fennel & Orange Lasagna</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Slow-Cooked Basil & Lime Ostrich</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db.</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Stuffed Oregano Chicken</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db</p>
-								</div>
-								<!-- /single dish -->
-
-							</div>
-
-							<div class="col-md-6">
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Pressure-Fried Asparagus Chicken</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db.</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Tenderized Egg & Coconut Duck</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db.</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Milk Chocolate Gingerbread</h4>
-										<h4 class="price">--£</h4>
-									</div>
-									<p>db.</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Simmered Mango & Pine Rabbit</h4>
-										<h4 class="price">--</h4>
-									</div>
-									<p>db.</p>
-								</div>
-								<!-- /single dish -->
-
-								<!-- single dish -->
-								<div class="single-dish">
-									<div class="single-dish-heading">
-										<h4 class="name">Red Wine Surprise</h4>
-										<h4 class="price">--</h4>
-									</div>
-									<p>db</p>
-								</div>
-								<!-- /single dish -->
-
-							</div>
-
-						</div>
-						<!-- /menu1 -->
-
-					</div>
-					<!-- /menu content -->
-
-				</div>
-				<!-- /row -->
-
-			</div>
-			<!-- /container -->
-
-		</div>
-		<!-- /Menu -->
+                <!-- bebidas -->
+               
 
 		<!-- Reservation -->
 		<div id="reservation" class="section">
