@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-<!--    <link rel="icon" th:href="@{favicon.ico}">-->
+    <!--    <link rel="icon" th:href="@{favicon.ico}">-->
     <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
 
     <!-- Simple bar CSS -->
     <link rel="stylesheet" th:href="@{/css/simplebar.css}">
     <!-- Fonts CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Icons CSS -->
     <link rel="stylesheet" th:href="@{/css/feather.css}">
     <link rel="stylesheet" th:href="@{/css/select2.css}">
@@ -30,355 +30,351 @@
 
     <link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.css}">
 </head>
+
 <body class="vertical  light  ">
-<div class="wrapper">
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <div th:replace="~{fragments/navbar :: sidebar}"></div>
+    <div class="wrapper">
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <div th:replace="~{fragments/navbar :: sidebar}"></div>
 
 
-    <main role="main" class="main-content">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2 class="mb-2 page-title">Reservas</h2>
-                            <!--                    <p th:text="|Hola ${nombre}|"></p>-->
+        <main role="main" class="main-content">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2 class="mb-2 page-title">Reservas</h2>
+                                <!--                    <p th:text="|Hola ${nombre}|"></p>-->
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New</button>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#defaultModal"> Add New</button>
-                        </div>
-                    </div>
-                    <div class="row my-4">
+                        <div class="row my-4">
 
-                        <!-- Small table -->
-                        <div class="col-md-12">
-                            <div class="card shadow">
-                                <div class="card-body">
-                                    <!-- table -->
-                                    <table class="table datatables" id="dataTable-1">
-                                        <thead>
-                                        <tr>
-                                            <!--                                            <th></th>-->
-                                            <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Usuario</th>
-                                            <th>Reservación</th>
-                                            <th>Personas</th>
-                                            <th>N° Mesa (Cant.)</th>
-                                            <th>Estado</th>
-                                            <th>Creado</th>
-                                            <th>Editado</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="obj : ${reservas}">
-                                            <td th:text="${obj.id}"></td>
-                                            <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
-                                            <td th:text="|${obj.usuarios.email}|"></td>
-                                            <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
-<!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
-                                            <td th:text="${obj.nroPersonas}"></td>
-                                            <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
-                                            <td th:text="${obj.estado}"></td>
-                                            <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
-                                            <td th:text="${obj.updatedAt}"></td>
-                                            <td>
-                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <!-- Button trigger modal -->
+                            <!-- Small table -->
+                            <div class="col-md-12">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <!-- table -->
+                                        <table class="table datatables" id="dataTable-1">
+                                            <thead>
+                                                <tr>
+                                                    <!--                                            <th></th>-->
+                                                    <th>#</th>
+                                                    <th>Nombre</th>
+                                                    <th>Usuario</th>
+                                                    <th>Reservación</th>
+                                                    <th>Personas</th>
+                                                    <th>N° Mesa (Cant.)</th>
+                                                    <th>Estado</th>
+                                                    <th>Creado</th>
+                                                    <th>Editado</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="obj : ${reservas}">
+                                                    <td th:text="${obj.id}"></td>
+                                                    <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
+                                                    <td th:text="|${obj.usuarios.email}|"></td>
+                                                    <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
+                                                    <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
+                                                    <td th:text="${obj.nroPersonas}"></td>
+                                                    <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
+                                                    <td th:text="${obj.estado}"></td>
+                                                    <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
+                                                    <td th:text="${obj.updatedAt}"></td>
+                                                    <td>
+                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="text-muted sr-only">Action</span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <!-- Button trigger modal -->
 
-                                                    <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
-                                                    <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|"> Eliminar</button>
-                                                    <!--                                                    <a class="dropdown-item" href="#">Edit</a>-->
-                                                    <!--                                                    <a class="dropdown-item" href="#">Remove</a>-->
-                                                    <!--                                                    <a class="dropdown-item" href="#">Assign</a>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                                            <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
+                                                            <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|"> Eliminar</button>
+                                                            <!--                                                    <a class="dropdown-item" href="#">Edit</a>-->
+                                                            <!--                                                    <a class="dropdown-item" href="#">Remove</a>-->
+                                                            <!--                                                    <a class="dropdown-item" href="#">Assign</a>-->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                        </div> <!-- simple table -->
-                    </div>
-                </div> <!-- .col-12 -->
-            </div> <!-- .row -->
-        </div> <!-- .container-fluid -->
-    </main> <!-- main -->
-</div>
-
-
-<!-- Modal Create-->
-<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="defaultModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/reserva/create}" method="post" id="form-create">
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="dato1">Fecha</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control drgpicker" id="dato1" name="dato1" value="06/24/2024" aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
-                                </div>
-                            </div>
+                            </div> <!-- simple table -->
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="dato2">Hora</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control time-input" id="dato2" name="dato2" placeholder="" aria-describedby="button-addon2">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="form-group">
-                        <label for="dato3">Nro. de Personas</label>
-                        <input type="text" id="dato3" name="dato3" class="form-control">
-                    </div> -->
-                    <div class="form-group">
-                        <label for="dato3">N° Personas</label>
-                        <select class="form-control" id="dato3" name="dato3">
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 Personas</option>
-                            <option value="3">3 Personas</option>
-                            <option value="4">4 Personas</option>
-                            <option value="5">5 Personas</option>
-                            <option value="6">6 Personas</option>
-                            <option value="7">7 Personas</option>
-                            <option value="8">8 Personas</option>
-                        </select>
-                    </div>
-<!--                    <div class="form-group">-->
-<!--                        <label for="dato4">Bebidas</label>-->
-<!--                        <input type="text" id="dato4" name="dato4" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="multi-select2">Multiple Select</label>-->
-<!--                        <select class="form-control select2-multi" id="multi-select2" multiple="multiple" >-->
-<!--                                <option th:each="bebida : ${bebidas}" th:value="${bebida.id}" th:text="${bebida.nombre}"></option>-->
-
-<!--                        </select>-->
-<!--                    </div> &lt;!&ndash; form-group &ndash;&gt;-->
-
-
-
-
-
-
-<!--                    <div class="form-group">-->
-<!--                        <label for="dato5">Platos</label>-->
-<!--                        <input type="text" id="dato5" name="dato5" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="dato66">Usuarios</label>-->
-<!--                        <input type="text" id="dato66" name="dato66" class="form-control">-->
-<!--                    </div>-->
-                    <div class="form-group">
-                        <label for="dato6">Usuarios</label>
-                        <select class="form-control select2" id="dato6" name="dato6">
-                                <option th:each="usr : ${usuarios}" th:value="${usr.id}" th:text="|${usr.apellidoPat} - ${usr.nombres}|"></option>
-                        </select>
-                    </div> <!-- form-group -->
-                    <div class="form-group">
-                        <label for="dato7">Mesas</label>
-                        <select class="form-control select2" id="dato7" name="dato7">
-                            <option th:each="m : ${mesas}" th:value="${m.id}" th:text="|Nro. ${m.nroMesa} - Capacidad:${m.capacidad} - Estado:${m.estado}|"></option>
-                        </select>
-                    </div> <!-- form-group -->
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">Guardar</button>
-                    </div>
-                </form>
-<!-- 
-                <h3>Bebidas seleccionadas</h3>
-                <ul id="selected-beverages" class="list-group"></ul> -->
-            </div>
-        </div>
+                    </div> <!-- .col-12 -->
+                </div> <!-- .row -->
+            </div> <!-- .container-fluid -->
+        </main> <!-- main -->
     </div>
-</div>
-<!-- EndModal Create-->
 
-<!-- Modal Update-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form id="updateForm">
+
+    <!-- Modal Create-->
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="defaultModalLabelEdit">Editar</h5>
+                    <h5 class="modal-title" id="defaultModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="updateDato00">Usuario</label>
-                        <input type="text" id="updateDato00" name="updateDato00" class="form-control" readonly="">
+                    <form th:action="@{/reserva/create}" method="post" id="form-create">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="dato1">Fecha</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control drgpicker" id="dato1" name="dato1" value="06/24/2024" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="dato2">Hora</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control time-input" id="dato2" name="dato2" placeholder="" aria-describedby="button-addon2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                        <label for="dato3">Nro. de Personas</label>
+                        <input type="text" id="dato3" name="dato3" class="form-control">
+                    </div> -->
+                        <div class="form-group">
+                            <label for="dato3">N° Personas</label>
+                            <select class="form-control" id="dato3" name="dato3">
+                                <option value="1">1 Persona</option>
+                                <option value="2">2 Personas</option>
+                                <option value="3">3 Personas</option>
+                                <option value="4">4 Personas</option>
+                                <option value="5">5 Personas</option>
+                                <option value="6">6 Personas</option>
+                                <option value="7">7 Personas</option>
+                                <option value="8">8 Personas</option>
+                            </select>
+                        </div>
+                        <!--                    <div class="form-group">-->
+                        <!--                        <label for="dato4">Bebidas</label>-->
+                        <!--                        <input type="text" id="dato4" name="dato4" class="form-control">-->
+                        <!--                    </div>-->
+                        <!--                    <div class="form-group">-->
+                        <!--                        <label for="multi-select2">Multiple Select</label>-->
+                        <!--                        <select class="form-control select2-multi" id="multi-select2" multiple="multiple" >-->
+                        <!--                                <option th:each="bebida : ${bebidas}" th:value="${bebida.id}" th:text="${bebida.nombre}"></option>-->
+
+                        <!--                        </select>-->
+                        <!--                    </div> &lt;!&ndash; form-group &ndash;&gt;-->
+
+
+
+
+
+
+                        <!--                    <div class="form-group">-->
+                        <!--                        <label for="dato5">Platos</label>-->
+                        <!--                        <input type="text" id="dato5" name="dato5" class="form-control">-->
+                        <!--                    </div>-->
+                        <!--                    <div class="form-group">-->
+                        <!--                        <label for="dato66">Usuarios</label>-->
+                        <!--                        <input type="text" id="dato66" name="dato66" class="form-control">-->
+                        <!--                    </div>-->
+                        <div class="form-group">
+                            <label for="dato6">Usuarios</label>
+                            <select class="form-control select2" id="dato6" name="dato6">
+                                <option th:each="usr : ${usuarios}" th:value="${usr.id}" th:text="|${usr.apellidoPat} - ${usr.nombres}|"></option>
+                            </select>
+                        </div> <!-- form-group -->
+                        <div class="form-group">
+                            <label for="dato7">Mesas</label>
+                            <select class="form-control select2" id="dato7" name="dato7">
+                                <option th:each="m : ${mesas}" th:value="${m.id}" th:text="|Nro. ${m.nroMesa} - Capacidad:${m.capacidad} - Estado:${m.estado}|"></option>
+                            </select>
+                        </div> <!-- form-group -->
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn mb-2 btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                    <!-- 
+                <h3>Bebidas seleccionadas</h3>
+                <ul id="selected-beverages" class="list-group"></ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EndModal Create-->
+
+    <!-- Modal Update-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="updateForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="defaultModalLabelEdit">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="updateDato01">Id</label>
-                        <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
-                    </div>
-                    <div class="form-group">
-                        <label for="updateDato02">Fecha</label>
-                        <input type="text" id="updateDato02" name="updateDato02" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="updateDato03">Hora</label>
-                        <input type="text" id="updateDato03" name="updateDato03" class="form-control">
-                    </div>
-                    <!-- <div class="form-group">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="updateDato00">Usuario</label>
+                            <input type="text" id="updateDato00" name="updateDato00" class="form-control" readonly="">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato01">Id</label>
+                            <input type="text" id="updateDato01" name="updateDato01" class="form-control" readonly="">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato02">Fecha</label>
+                            <input type="text" id="updateDato02" name="updateDato02" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato03">Hora</label>
+                            <input type="text" id="updateDato03" name="updateDato03" class="form-control">
+                        </div>
+                        <!-- <div class="form-group">
                         <label for="updateDato04">Nro. Personas</label>
                         <input type="text" id="updateDato04" name="updateDato04" class="form-control">
                     </div> -->
-                    <div class="form-group">
-                        <label for="updateDato04">N° Personas</label>
-                        <select class="form-control" id="updateDato04" name="updateDato04">
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 Personas</option>
-                            <option value="3">3 Personas</option>
-                            <option value="4">4 Personas</option>
-                            <option value="5">5 Personas</option>
-                            <option value="6">6 Personas</option>
-                            <option value="7">7 Personas</option>
-                            <option value="8">8 Personas</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="updateDato04">N° Personas</label>
+                            <select class="form-control" id="updateDato04" name="updateDato04">
+                                <option value="1">1 Persona</option>
+                                <option value="2">2 Personas</option>
+                                <option value="3">3 Personas</option>
+                                <option value="4">4 Personas</option>
+                                <option value="5">5 Personas</option>
+                                <option value="6">6 Personas</option>
+                                <option value="7">7 Personas</option>
+                                <option value="8">8 Personas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato05">Estado</label>
+                            <select class="form-control" id="updateDato05" name="updateDato05">
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                                <option value="ELIMINADO">Eliminado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato06">Usuario</label>
+                            <select class="form-control" id="updateDato06" name="updateDato06">
+                                <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="|${usuario.apellidoPat} - ${usuario.nombres}|"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDato07">Nro. de Mesa</label>
+                            <select class="form-control" id="updateDato07" name="updateDato07">
+                                <option th:each="mesa : ${mesas}" th:value="${mesa.id}" th:text="|Nro. ${mesa.nroMesa} - Capacidad: ${mesa.capacidad} - Estado: ${mesa.estado}|"></option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="updateDato05">Estado</label>
-                        <select class="form-control" id="updateDato05" name="updateDato05">
-                            <option value="ACTIVO">Activo</option>
-                            <option value="INACTIVO">Inactivo</option>
-                            <option value="ELIMINADO">Eliminado</option>
-                        </select>
+                    <div class="modal-footer">
+                        <button type="button" class="btn mb-2 btn-primary" onclick="registroUpdate()">Guardar cambios</button>
                     </div>
-                    <div class="form-group">
-                        <label for="updateDato06">Usuario</label>
-                        <select class="form-control" id="updateDato06" name="updateDato06">
-                            <option th:each="usuario : ${usuarios}"
-                            th:value="${usuario.id}" th:text="|${usuario.apellidoPat} - ${usuario.nombres}|"></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="updateDato07">Nro. de Mesa</label>
-                        <select class="form-control" id="updateDato07" name="updateDato07">
-                            <option th:each="mesa : ${mesas}"
-                            th:value="${mesa.id}" th:text="|Nro. ${mesa.nroMesa} - Capacidad: ${mesa.capacidad} - Estado: ${mesa.estado}|"></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn mb-2 btn-primary" onclick="registroUpdate()">Guardar cambios</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!-- EndModal Update-->
+    <!-- EndModal Update-->
 
 
-<div th:replace="~{fragments/navbar :: modal}"></div>
+    <div th:replace="~{fragments/navbar :: modal}"></div>
 
 
-<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/simplebar.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/daterangepicker.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.stickOnScroll.js}"></script>
-<script type="text/javascript" th:src="@{/js/tinycolor-min.js}"></script>
-<script type="text/javascript" th:src="@{/js/config.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/simplebar.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/daterangepicker.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.stickOnScroll.js}"></script>
+    <script type="text/javascript" th:src="@{/js/tinycolor-min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/config.js}"></script>
 
-<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/select2.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.steps.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery.timepicker.js}"></script>
-<script type="text/javascript" th:src="@{/js/dropzone.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/uppy.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/quill.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/select2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.steps.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.timepicker.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dropzone.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/uppy.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/quill.min.js}"></script>
 
-<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
-
-
-<script>
-    $('#dataTable-1').DataTable(
-        {
-            autoWidth: true,
-            "lengthMenu": [
-                [8, 16, 32, 64, -1],
-                [8, 16, 32, 64, "All"]
-            ]
-        });
-</script>
+    <script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
 
 
-<script>
-    $('.select2').select2(
-        {
-            theme: 'bootstrap4',
-        });
-    $('.select2-multi').select2(
-        {
-            multiple: true,
-            theme: 'bootstrap4',
-        });
-    $('.drgpicker').daterangepicker(
-        {
-            singleDatePicker: true,
-            timePicker: false,
-            showDropdowns: true,
-            locale:
+    <script>
+        $('#dataTable-1').DataTable(
+            {
+                autoWidth: true,
+                "lengthMenu": [
+                    [8, 16, 32, 64, -1],
+                    [8, 16, 32, 64, "All"]
+                ]
+            });
+    </script>
+
+
+    <script>
+        $('.select2').select2(
+            {
+                theme: 'bootstrap4',
+            });
+        $('.select2-multi').select2(
+            {
+                multiple: true,
+                theme: 'bootstrap4',
+            });
+        $('.drgpicker').daterangepicker(
+            {
+                singleDatePicker: true,
+                timePicker: false,
+                showDropdowns: true,
+                locale:
                 {
                     format: 'MM/DD/YYYY'
                 }
-        });
-    $('.time-input').timepicker(
-        {
-            'scrollDefault': 'now',
-            'zindex': '9999' /* fix modal open */
-        });
-    /** date range picker */
-    if ($('.datetimes').length)
-    {
-        $('.datetimes').daterangepicker(
+            });
+        $('.time-input').timepicker(
             {
-                timePicker: true,
-                startDate: moment().startOf('hour'),
-                endDate: moment().startOf('hour').add(32, 'hour'),
-                locale:
+                'scrollDefault': 'now',
+                'zindex': '9999' /* fix modal open */
+            });
+        /** date range picker */
+        if ($('.datetimes').length) {
+            $('.datetimes').daterangepicker(
+                {
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale:
                     {
                         format: 'M/DD hh:mm A'
                     }
-            });
-    }
-    var start = moment().subtract(29, 'days');
-    var end = moment();
+                });
+        }
+        var start = moment().subtract(29, 'days');
+        var end = moment();
 
-    function cb(start, end)
-    {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-    }
-    $('#reportrange').daterangepicker(
-        {
-            startDate: start,
-            endDate: end,
-            ranges:
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+        $('#reportrange').daterangepicker(
+            {
+                startDate: start,
+                endDate: end,
+                ranges:
                 {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -387,237 +383,230 @@
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
-        }, cb);
-    cb(start, end);
-    $('.input-placeholder').mask("00/00/0000",
-        {
-            placeholder: "__/__/____"
-        });
-    $('.input-zip').mask('00000-000',
-        {
-            placeholder: "____-___"
-        });
-    $('.input-money').mask("#.##0,00",
-        {
-            reverse: true
-        });
-    $('.input-phoneus').mask('(000) 000-0000');
-    $('.input-mixed').mask('AAA 000-S0S');
-    $('.input-ip').mask('0ZZ.0ZZ.0ZZ.0ZZ',
-        {
-            translation:
+            }, cb);
+        cb(start, end);
+        $('.input-placeholder').mask("00/00/0000",
+            {
+                placeholder: "__/__/____"
+            });
+        $('.input-zip').mask('00000-000',
+            {
+                placeholder: "____-___"
+            });
+        $('.input-money').mask("#.##0,00",
+            {
+                reverse: true
+            });
+        $('.input-phoneus').mask('(000) 000-0000');
+        $('.input-mixed').mask('AAA 000-S0S');
+        $('.input-ip').mask('0ZZ.0ZZ.0ZZ.0ZZ',
+            {
+                translation:
                 {
                     'Z':
-                        {
-                            pattern: /[0-9]/,
-                            optional: true
-                        }
+                    {
+                        pattern: /[0-9]/,
+                        optional: true
+                    }
                 },
-            placeholder: "___.___.___.___"
-        });
-    // editor
-    var editor = document.getElementById('editor');
-    if (editor)
-    {
-        var toolbarOptions = [
-            [
+                placeholder: "___.___.___.___"
+            });
+        // editor
+        var editor = document.getElementById('editor');
+        if (editor) {
+            var toolbarOptions = [
+                [
+                    {
+                        'font': []
+                    }],
+                [
+                    {
+                        'header': [1, 2, 3, 4, 5, 6, false]
+                    }],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [
+                    {
+                        'header': 1
+                    },
+                    {
+                        'header': 2
+                    }],
+                [
+                    {
+                        'list': 'ordered'
+                    },
+                    {
+                        'list': 'bullet'
+                    }],
+                [
+                    {
+                        'script': 'sub'
+                    },
+                    {
+                        'script': 'super'
+                    }],
+                [
+                    {
+                        'indent': '-1'
+                    },
+                    {
+                        'indent': '+1'
+                    }], // outdent/indent
+                [
+                    {
+                        'direction': 'rtl'
+                    }], // text direction
+                [
+                    {
+                        'color': []
+                    },
+                    {
+                        'background': []
+                    }], // dropdown with defaults from theme
+                [
+                    {
+                        'align': []
+                    }],
+                ['clean'] // remove formatting button
+            ];
+            var quill = new Quill(editor,
                 {
-                    'font': []
-                }],
-            [
-                {
-                    'header': [1, 2, 3, 4, 5, 6, false]
-                }],
-            ['bold', 'italic', 'underline', 'strike'],
-            ['blockquote', 'code-block'],
-            [
-                {
-                    'header': 1
-                },
-                {
-                    'header': 2
-                }],
-            [
-                {
-                    'list': 'ordered'
-                },
-                {
-                    'list': 'bullet'
-                }],
-            [
-                {
-                    'script': 'sub'
-                },
-                {
-                    'script': 'super'
-                }],
-            [
-                {
-                    'indent': '-1'
-                },
-                {
-                    'indent': '+1'
-                }], // outdent/indent
-            [
-                {
-                    'direction': 'rtl'
-                }], // text direction
-            [
-                {
-                    'color': []
-                },
-                {
-                    'background': []
-                }], // dropdown with defaults from theme
-            [
-                {
-                    'align': []
-                }],
-            ['clean'] // remove formatting button
-        ];
-        var quill = new Quill(editor,
-            {
-                modules:
+                    modules:
                     {
                         toolbar: toolbarOptions
                     },
-                theme: 'snow'
-            });
-    }
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function()
-    {
-        'use strict';
-        window.addEventListener('load', function()
-        {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form)
-            {
-                form.addEventListener('submit', function(event)
+                    theme: 'snow'
+                });
+        }
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script>
+        var uptarg = document.getElementById('drag-drop-area');
+        if (uptarg) {
+            var uppy = Uppy.Core().use(Uppy.Dashboard,
                 {
-                    if (form.checkValidity() === false)
+                    inline: true,
+                    target: uptarg,
+                    proudlyDisplayPoweredByUppy: false,
+                    theme: 'dark',
+                    width: 770,
+                    height: 210,
+                    plugins: ['Webcam']
+                }).use(Uppy.Tus,
                     {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
+                        endpoint: 'https://master.tus.io/files/'
+                    });
+            uppy.on('complete', (result) => {
+                console.log('Upload complete! We’ve uploaded these files:', result.successful)
             });
-        }, false);
-    })();
-</script>
-<script>
-    var uptarg = document.getElementById('drag-drop-area');
-    if (uptarg)
-    {
-        var uppy = Uppy.Core().use(Uppy.Dashboard,
-            {
-                inline: true,
-                target: uptarg,
-                proudlyDisplayPoweredByUppy: false,
-                theme: 'dark',
-                width: 770,
-                height: 210,
-                plugins: ['Webcam']
-            }).use(Uppy.Tus,
-            {
-                endpoint: 'https://master.tus.io/files/'
+        }
+    </script>
+    <script type="text/javascript" th:src="@{/js/apps.js}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-56159088-1');
+    </script>
+
+
+
+    <script th:inline="javascript">
+        function modalFill(id) {
+            $.ajax({
+                url: '/reserva/' + id,
+                method: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    $('#updateDato00').val(data.usuarios.apellidoPat + ', ' + data.usuarios.nombres + ' - ' + data.usuarios.email);
+                    $('#updateDato01').val(data.id);
+                    $('#updateDato02').val(data.fecha);
+                    $('#updateDato03').val(data.hora);
+                    $('#updateDato04').val(data.nroPersonas);
+                    $('#updateDato05').val(data.estado);
+
+                    $('#updateDato06').val(data.usuarios.id);
+                    $('#updateDato07').val(data.mesas.id);
+
+                    $('#updateModal').modal('show'); // Mostrar el modal
+                },
+                error: function (error) {
+                    console.error('Error al obtener los datos del distrito:', error);
+                }
             });
-        uppy.on('complete', (result) =>
-        {
-            console.log('Upload complete! We’ve uploaded these files:', result.successful)
-        });
-    }
-</script>
-<script type="text/javascript" th:src="@{/js/apps.js}"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
+        }
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
+        function registroUpdate() {
+            var id = $("#updateDato01").val();
+            var miObjeto = {
+                id: id,
+                fecha: $("#updateDato02").val(),
+                hora: $("#updateDato03").val(),
+                nroPersonas: $("#updateDato04").val(),
+                estado: $("#updateDato05").val(),
+                usuarios: {
+                    id: $("#updateDato06").val()
+                },
+                mesas: {
+                    id: $("#updateDato07").val()
+                }
+            };
+            console.log(miObjeto);
 
-    gtag('js', new Date());
-    gtag('config', 'UA-56159088-1');
-</script>
+            $.ajax({
+                url: "/reserva/update/" + id,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(miObjeto),
+                success: function (response) {
+                    alert(response);
+                    $("#editarModal").hide();
+                    location.reload(); // Recargar la página para ver los cambios
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
 
-
-
-<script th:inline="javascript">
-    function modalFill(id) {
-        $.ajax({
-            url: '/reserva/' + id,
-            method: 'GET',
-            success: function (data) {
-                console.log(data);
-                $('#updateDato00').val(data.usuarios.apellidoPat + ', ' + data.usuarios.nombres + ' - ' + data.usuarios.email);
-                $('#updateDato01').val(data.id);
-                $('#updateDato02').val(data.fecha);
-                $('#updateDato03').val(data.hora);
-                $('#updateDato04').val(data.nroPersonas);
-                $('#updateDato05').val(data.estado);
-
-                $('#updateDato06').val(data.usuarios.id);
-                $('#updateDato07').val(data.mesas.id);
-
-                $('#updateModal').modal('show'); // Mostrar el modal
-            },
-            error: function (error) {
-                console.error('Error al obtener los datos del distrito:', error);
-            }
-        });
-    }
-
-    function registroUpdate() {
-        var id = $("#updateDato01").val();
-        var miObjeto = {
-            id: id,
-            fecha: $("#updateDato02").val(),
-            hora: $("#updateDato03").val(),
-            nroPersonas: $("#updateDato04").val(),
-            estado: $("#updateDato05").val(),
-            usuarios: {
-                id: $("#updateDato06").val()
-            },
-            mesas: {
-                id: $("#updateDato07").val()
-            }
-        };
-        console.log(miObjeto);
-
-        $.ajax({
-            url: "/reserva/update/" + id,
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(miObjeto),
-            success: function (response) {
-                alert(response);
-                $("#editarModal").hide();
-                location.reload(); // Recargar la página para ver los cambios
-            },
-            error: function (xhr, status, error) {
-                alert("Error: " + error);
-            }
-        });
-    }
-
-    function registroDelete(id) {
-        $.ajax({
-            url: "/reserva/delete/" + id,
-            type: "DELETE",
-            success: function (response) {
-                alert(response);
-                location.reload(); // Recargar la página para ver los cambios
-            },
-            error: function (xhr, status, error) {
-                alert("Error: " + error);
-            }
-        });
-    }
-</script>
+        function registroDelete(id) {
+            $.ajax({
+                url: "/reserva/delete/" + id,
+                type: "DELETE",
+                success: function (response) {
+                    alert(response);
+                    location.reload(); // Recargar la página para ver los cambios
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>
