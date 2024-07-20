@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,6 +37,9 @@ public class UsuarioController {
     private RolService rolService;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private RegistrationEmailService registrationEmailService;
 
     @GetMapping(path = { "/usuarios", "/lista" })
@@ -64,7 +68,11 @@ public class UsuarioController {
             @RequestParam(name = "createDato11", required = false) Long dato11
     ){
         Distritos miDistrito = distritoService.getDistritoById(dato10);
+        if (dato11 == null){
+            dato11 = 3L;
+        }
         Roles miRol = rolService.getRolById(dato11);
+        String encryptedPassword = passwordEncoder.encode(dato09);
 
         Usuarios miUsuario = new Usuarios();
         miUsuario.setNombres(dato01);
@@ -75,7 +83,7 @@ public class UsuarioController {
         miUsuario.setReferencia(dato06);
         miUsuario.setDni(dato07);
         miUsuario.setEmail(dato08);
-        miUsuario.setPassword(dato09);
+        miUsuario.setPassword(encryptedPassword);
 
         miUsuario.setDistritos(miDistrito);
         miUsuario.setRoles(miRol);
@@ -84,6 +92,46 @@ public class UsuarioController {
         registrationEmailService.sendRegistrationEmail(dato08, dato09);
         System.out.println("Correo enviado a: " + dato08);
         return "redirect:/usuario/usuarios";
+    }
+    @PostMapping("/register")
+    public String register(
+        @RequestParam(name = "createDato01", required = false) String dato01,
+            @RequestParam(name = "createDato02", required = false) String dato02,
+            @RequestParam(name = "createDato03", required = false) String dato03,
+            @RequestParam(name = "createDato04", required = false) String dato04,
+            @RequestParam(name = "createDato05", required = false) String dato05,
+            @RequestParam(name = "createDato06", required = false) String dato06,
+            @RequestParam(name = "createDato07", required = false) String dato07,
+            @RequestParam(name = "createDato08", required = false) String dato08,
+            @RequestParam(name = "createDato09", required = false) String dato09,
+            @RequestParam(name = "createDato10", required = false) Long dato10,
+            @RequestParam(name = "createDato11", required = false) Long dato11
+    ){
+        Distritos miDistrito = distritoService.getDistritoById(dato10);
+        if (dato11 == null){
+            dato11 = 3L;
+        }
+        Roles miRol = rolService.getRolById(dato11);
+        String encryptedPassword = passwordEncoder.encode(dato09);
+
+        Usuarios miUsuario = new Usuarios();
+        miUsuario.setNombres(dato01);
+        miUsuario.setApellidoPat(dato02);
+        miUsuario.setApellidoMat(dato03);
+        miUsuario.setTelefono(dato04);
+        miUsuario.setDireccion(dato05);
+        miUsuario.setReferencia(dato06);
+        miUsuario.setDni(dato07);
+        miUsuario.setEmail(dato08);
+        miUsuario.setPassword(encryptedPassword);
+
+        miUsuario.setDistritos(miDistrito);
+        miUsuario.setRoles(miRol);
+
+        usuarioService.saveUsuario(miUsuario);
+        registrationEmailService.sendRegistrationEmail(dato08, dato09);
+        System.out.println("Correo enviado a: " + dato08);
+        return "redirect:/pedido/lista";
     }
 
     //Método para obtener los datos de un plato por ID (para el modal de edición)
