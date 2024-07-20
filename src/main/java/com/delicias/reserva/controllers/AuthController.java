@@ -13,6 +13,11 @@ public class AuthController {
         return "auth/login";
     }
 
+    @GetMapping(path = {"/register"})
+    public String register() {
+        return "auth/register";
+    }
+
 //    @GetMapping(path = {"/logout"})
 //    public String logout() {
 //        return "logout";
