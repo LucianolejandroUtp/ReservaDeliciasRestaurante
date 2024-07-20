@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
 @EnableWebSecurity
@@ -23,10 +24,12 @@ public class SeguridadConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
+        requestCache.setMatchingRequestParameterName(null);
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(registry ->{
-                    registry.requestMatchers("/","/js/**","/css/**","/fonts/**", "/assets/**", "/favicon.ico").permitAll();
+                .authorizeHttpRequests(registry -> {
+                    registry.requestMatchers("/", "/js/**", "/css/**", "/fonts/**", "/assets/**", "/favicon.ico","error").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
                     registry.requestMatchers("/usuario/register").permitAll();
 
@@ -50,23 +53,26 @@ public class SeguridadConfig {
 
                     registry.anyRequest().authenticated();
                 })
+                .requestCache((cache) -> cache
+                        .requestCache(requestCache))
                 .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer.loginPage("/auth/login").successHandler(new AuthSuccessHandler()).permitAll();
+                    httpSecurityFormLoginConfigurer.loginPage("/auth/login").successHandler(new AuthSuccessHandler())
+                            .permitAll();
 
                 })
-//                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                // .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails userAdmin = User.builder()
-//                .username("admin")
-//                .password("$2a$12$57VCW.MjVCPJOlVYYZMylOTayWesEkQIU0oHoOQ.00mZkCGTD09XK")
-//                .roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(userAdmin);
-//    }
+    // @Bean
+    // public UserDetailsService userDetailsService() {
+    // UserDetails userAdmin = User.builder()
+    // .username("admin")
+    // .password("$2a$12$57VCW.MjVCPJOlVYYZMylOTayWesEkQIU0oHoOQ.00mZkCGTD09XK")
+    // .roles("ADMIN")
+    // .build();
+    // return new InMemoryUserDetailsManager(userAdmin);
+    // }
 
     @Bean
     public UserDetailsService userDetailsService() {
