@@ -15,6 +15,7 @@
     <include file="db/changelog/create_mesas_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_reservas_table.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_pedidos_table.sql" relativeToChangelogFile="false"/>
+    <include file="db/changelog/create_pagos_table.sql" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/insert_distritos.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/insert_roles.sql" relativeToChangelogFile="false"/>
