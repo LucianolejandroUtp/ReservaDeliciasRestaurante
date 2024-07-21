@@ -10,6 +10,7 @@ import com.delicias.reserva.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -27,20 +28,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reserva")
 public class ReservaController {
-
     @Autowired
     private ReservaService reservaService;
-
     @Autowired
     private MesaService mesaService;
-
     @Autowired
     private UsuarioService usuarioService;
-
     @Autowired
     private MyUserDetailService myUserDetailService;
 
@@ -54,14 +52,15 @@ public class ReservaController {
         model.addAttribute("mesas", mesas);
         model.addAttribute("usuarios", usuarios);
 
-
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof UserDetails) {       
-
             String email = ((UserDetails) authentication.getPrincipal()).getUsername();
-            System.out.println("Email en Reserva controller last: " + email);
-            model.addAttribute("email",email);
+
+            UserDetails uD = myUserDetailService.loadUserByUsername(email);
+            String concatAuth = uD.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
+           
+            model.addAttribute("email", email);
+            model.addAttribute("concatAuth", concatAuth);
         }
         return "reserva";
     }
@@ -158,8 +157,4 @@ public class ReservaController {
         reservaService.deleteReserva(id);
         return ResponseEntity.ok("Eliminación exitosa");
     }
-
-
-
-
 }

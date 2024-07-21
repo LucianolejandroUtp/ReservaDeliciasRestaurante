@@ -75,46 +75,58 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="obj : ${reservas}">
-                                                    <!-- <div th:switch="${email}"> 
-                                                        <p th:case="lucyall19@gmail.com">User is an administrator</p>
-                                                      </div> -->
-
-
-
-                                                    <!-- <th th:text="${email.username}"></th> -->
-                                                    <!-- <div th:if="${email.usuario == 'lucyall19@gmail.com'}">
-                                                        algo
-                                                    </div>-->
-                                                    <!-- <td th:text="${email = lucyall19@gmail.com}">
-                                                        algo
-                                                    </td>  -->
-
-                                                    <td th:text="${obj.id}"></td>
-                                                    <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
-                                                    <td th:text="|${obj.usuarios.email}|"></td>
-                                                    <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
-                                                    <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
-                                                    <td th:text="${obj.nroPersonas}"></td>
-                                                    <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
-                                                    <td th:text="${obj.estado}"></td>
-                                                    <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
-                                                    <td th:text="${obj.updatedAt}"></td>
-                                                    <td>
-                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="text-muted sr-only">Action</span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <!-- Button trigger modal -->
-
-                                                            <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
-                                                            <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|"> Eliminar</button>
-                                                            <!--                                                    <a class="dropdown-item" href="#">Edit</a>-->
-                                                            <!--                                                    <a class="dropdown-item" href="#">Remove</a>-->
-                                                            <!--                                                    <a class="dropdown-item" href="#">Assign</a>-->
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <div th:switch="${concatAuth}">
+                                                    <div th:case="'ROLE_ADMIN,ROLE_INVITADO,ROLE_RECEPCIONISTA,ROLE_USER'">
+                                                        <tr th:each="obj : ${reservas}">
+                                                            <td th:text="${obj.id}"></td>
+                                                            <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
+                                                            <td th:text="|${obj.usuarios.email}|"></td>
+                                                            <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
+                                                            <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
+                                                            <td th:text="${obj.nroPersonas}"></td>
+                                                            <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
+                                                            <td th:text="${obj.estado}"></td>
+                                                            <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
+                                                            <td th:text="${obj.updatedAt}"></td>
+                                                            <td>
+                                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <span class="text-muted sr-only">Action</span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
+                                                                    <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|"> Eliminar</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </div>
+                                                    <div th:case="ROLE_USER">
+                                                        <tr th:each="obj : ${reservas}">
+                                                            <div th:if="${obj.usuarios.email} == ${email}">
+                                                                <td th:text="${obj.id}"></td>
+                                                                <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
+                                                                <td th:text="|${obj.usuarios.email}|"></td>
+                                                                <td th:text="|${#temporals.format(obj.fecha, 'dd-MM-yyyy')} ${#temporals.format(obj.hora, 'HH:mm')}|"></td>
+                                                                <!--                                            <td th:text="${#temporals.format(obj.hora, 'HH:mm')}"></td>-->
+                                                                <td th:text="${obj.nroPersonas}"></td>
+                                                                <td th:text="|${obj.mesas.nroMesa} (${obj.mesas.capacidad})|"></td>
+                                                                <td th:text="${obj.estado}"></td>
+                                                                <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
+                                                                <td th:text="${obj.updatedAt}"></td>
+                                                                <td>
+                                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <span class="text-muted sr-only">Action</span>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <!-- Button trigger modal -->
+                                                                        <button type="button" class="btn mb-2 btn-outline-warning" th:onclick="|modalFill(${obj.id})|"> Editar</button>
+                                                                        <button type="button" class="btn mb-2 btn-outline-danger" th:onclick="|registroDelete(${obj.id})|"> Eliminar</button>
+                                                                    </div>
+                                                                </td>
+                                                            </div>
+                                                        </tr>
+                                                    </div>
+                                                </div>
                                             </tbody>
                                         </table>
                                     </div>
