@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,23 +12,23 @@
 		<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700%7CCabin:400%7CDancing+Script" rel="stylesheet">
 
 		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 
 		<!-- Owl Carousel -->
-		<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
-		<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.css}" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.css}" />
 
 		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 
 		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!-- HTML5 shim and Respond.js} for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js} doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js}"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js}"></script>
 
 		<![endif]-->
 
@@ -77,7 +77,7 @@
 						<li><a href="index.html#about">Sobre Nosotros</a></li>
 						<li><a href="index.html#menu">Menu</a></li>
 						<li><a href="index.html#reservation">Reservacion</a></li>
-						<!-- <li><a href="index.html#gallery">Gallery</a></li> -->
+						<!-- <li><a href="index2.html#gallery">Gallery</a></li> -->
 						<li><a href="index.html#events">Nuestros eventos</a></li>
 						<li><a href="index.html#contact">Contactenos</a></li>
 					</ul>
@@ -85,14 +85,13 @@
 
 					<!-- button nav -->
 					<ul class="cta-nav">
-						<li><a href="index.html#reservation" class="main-button">Reservación</a></li>
-						<li><a href="#" class="main-button">Iniciar Sesion</a></li>
+						<li><a href="/reserva/reservas" class="main-button">Iniciar Sesion</a></li>
 					</ul>
 					<!-- button nav -->
 
 					<!-- contact nav -->
 					<ul class="contact-nav nav navbar-nav">
-						<li><a href="tel:0455481497"><i class="fa fa-phone"></i> ------</a></li>
+						<li><a href="tel:929787872"><i class="fa fa-phone"></i> ------</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> ----</a></li>
 					</ul>
 					<!-- contact nav -->
@@ -119,7 +118,7 @@
 					<div class="home-content">
 						<h1 class="white-text">Welcome To Delicias Gourmet</h1>
 						<h4 class="white-text lead">Auténtico sabor, servicio excepcional.</h4>
-						<a href="index.html#menu"><button class="main-button">Descubre nuestro menu</button></a>
+						<a href="index2.html#menu"><button class="main-button">Descubre nuestro menu</button></a>
 					</div>
 				</div>
 
@@ -226,91 +225,159 @@
 
 
 		<!-- Menu -->
-<div id="menu" class="section">
+		<div id="menu" class="section">
 
-    <!-- Backgound Image -->
-    <div class="bg-image bg-parallax overlay" style="background-image:url(./img/background01.jpg)"></div>
-    <!-- /Backgound Image -->
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background01.jpg)"></div>
+			<!-- /Backgound Image -->
 
-    <!-- container -->
-    <div class="container">
+			<!-- container -->
+			<div class="container">
 
-        <!-- row -->
-        <div class="row">
+				<!-- row -->
+				<div class="row">
 
-            <div class="section-header text-center">
-                <h4 class="sub-title">Descubre</h4>
-                <h2 class="title white-text">Nuestro Menu</h2>
-            </div>
+					<div class="section-header text-center">
+						<h4 class="sub-title">Descubre</h4>
+						<h2 class="title white-text">Nuestro Menu</h2>
+					</div>
 
-            <!-- menu nav -->
-            <ul class="menu-nav">
-                <li class="active"><a data-toggle="tab" href="#entradas">Entradas</a></li>
-                <li><a data-toggle="tab" href="#platos_fuertes">Platos Fuertes</a></li>
-                <li><a data-toggle="tab" href="#postres">Postres</a></li>
-                <li><a data-toggle="tab" href="#bebidas">Bebidas</a></li>
-            </ul>
-            <!-- /menu nav -->
+					<!-- menu nav -->
+					<ul class="menu-nav">
+					  <li class="active"><a data-toggle="tab" href="#menu1">Entradas</a></li>
+					  <li><a data-toggle="tab" href="#menu1">Platos Fuertes</a></li>
+					  <li><a data-toggle="tab" href="#menu1">Bebidas</a></li>
+					  <li><a data-toggle="tab" href="#menu1">Postres</a></li>
+					</ul>
+					<!-- /menu nav -->
 
-            <!-- menu content -->
-            <div id="menu-content" class="tab-content">
+					<!-- menu content -->
+					<div id="menu-content" class="tab-content">
 
-                <!-- entradas -->
-                <div id="entradas" class="tab-pane fade in">
-                    <?php foreach ($menu_items['entradas'] as $item) {?>
-                        <div class="col-md-6">
-                            <!-- single dish -->
-                            <div class="single-dish">
-                                <div class="single-dish-heading">
-                                    <h4 class="name"><?= $item['name']?></h4>
-                                    <h4 class="price"><?= $item['price']?></h4>
-                                </div>
-                                <p><?= $item['description']?></p>
-                            </div>
-                            <!-- /single dish -->
-                        </div>
-                    <?php }?>
-                </div>
-                <!-- /entradas -->
+						<!-- menu1 -->
+						<div id="menu1" class="tab-pane fade in active">
+							<div class="col-md-6">
 
-                <!-- platos fuertes -->
-                <div id="platos_fuertes" class="tab-pane fade in">
-                    <?php foreach ($menu_items['platos_fuertes'] as $item) {?>
-                        <div class="col-md-6">
-                            <!-- single dish -->
-                            <div class="single-dish">
-                                <div class="single-dish-heading">
-                                    <h4 class="name"><?= $item['name']?></h4>
-                                    <h4 class="price"><?= $item['price']?></h4>
-                                </div>
-                                <p><?= $item['description']?></p>
-                            </div>
-                            <!-- /single dish -->
-                        </div>
-                    <?php }?>
-                </div>
-                <!-- /platos fuertes -->
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Basted Rhubarb Mussels</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db</p>
+								</div>
+								<!-- /single dish -->
 
-                <!-- postres -->
-                <div id="postres" class="tab-pane fade in">
-                    <?php foreach ($menu_items['postres'] as $item) {?>
-                        <div class="col-md-6">
-                            <!-- single dish -->
-                            <div class="single-dish">
-                                <div class="single-dish-heading">
-                                    <h4 class="name"><?= $item['name']?></h4>
-                                    <h4 class="price"><?= $item['price']?></h4>
-                                </div>
-                                <p><?= $item['description']?></p>
-                            </div>
-                            <!-- /single dish -->
-                        </div>
-                    <?php }?>
-                </div>
-                <!-- /postres -->
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Steamed Chili Moussaka</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db</p>
+								</div>
+								<!-- /single dish -->
 
-                <!-- bebidas -->
-               
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Blanched Fennel & Orange Lasagna</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Slow-Cooked Basil & Lime Ostrich</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Stuffed Oregano Chicken</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Pressure-Fried Asparagus Chicken</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Tenderized Egg & Coconut Duck</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Milk Chocolate Gingerbread</h4>
+										<h4 class="price">--£</h4>
+									</div>
+									<p>db.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Simmered Mango & Pine Rabbit</h4>
+										<h4 class="price">--</h4>
+									</div>
+									<p>db.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Red Wine Surprise</h4>
+										<h4 class="price">--</h4>
+									</div>
+									<p>db</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+						</div>
+						<!-- /menu1 -->
+
+					</div>
+					<!-- /menu content -->
+
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- /Menu -->
 
 		<!-- Reservation -->
 		<div id="reservation" class="section">
@@ -327,7 +394,7 @@
 
 					<!-- reservation form -->
 					<div class="col-md-6 col-md-offset-1 col-sm-10 col-sm-offset-1">
-						<form class="reserve-form row">
+						<form class="reserve-form row" action="/usuario/register" method="post">
 							<div class="section-header text-center">
 								<h4 class="sub-title">Reservación</h4>
 								<h2 class="title white-text">Reserva tu Mesa</h2>
@@ -335,39 +402,39 @@
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="name">Nombres:</label>
-									<input class="input" type="text" placeholder="Nombre" id="name">
+									<label for="createDato01">Nombres:</label>
+									<input class="input" type="text" placeholder="Nombre" id="createDato01" name="createDato01">
 								</div>
 								<div class="form-group">
-									<label for="name">Apellido Paterno:</A>:</label>
-									<input class="input" type="text" placeholder="Apellido Paterno" id="apeP">
+									<label for="createDato02">Apellido Paterno:</A>:</label>
+									<input class="input" type="text" placeholder="Apellido Paterno"  id="createDato02" name="createDato02">
 								</div>
 								<div class="form-group">
-									<label for="name">Apellido Materno:</label>
-									<input class="input" type="text" placeholder="Apellido Materno" id="apeM">
+									<label for="createDato03">Apellido Materno:</label>
+									<input class="input" type="text" placeholder="Apellido Materno"  id="createDato03" name="createDato03">
 								</div>
 								<div class="form-group">
-									<label for="phone">Telefono:</label>
-									<input class="input" type="tel" placeholder="Telefono" id="phone">
+									<label for="createDato04">Telefono:</label>
+									<input class="input" type="tel" placeholder="Telefono"  id="createDato04" name="createDato04">
 								</div>
 								<div class="form-group">
-									<label for="name">Dirección:</label>
-									<input class="input" type="text" placeholder="Dirección" id="direccion">
+									<label for="createDato05">Dirección:</label>
+									<input class="input" type="text" placeholder="Dirección"  id="createDato05" name="createDato05">
 								</div>
 								<div class="form-group">
-									<label for="name">Referencia:</label>
-									<input class="input" type="text" placeholder="Referencia" id="referencia">
+									<label for="createDato06">Referencia:</label>
+									<input class="input" type="text" placeholder="Referencia"  id="createDato06" name="createDato06">
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="email">Email:</label>
-									<input class="input" type="email" placeholder="Email" id="email">
+									<label for="createDato08">Email:</label>
+									<input class="input" type="email" placeholder="Email"  id="createDato08" name="createDato08">
 								</div>
 								<div class="form-group">
-									<label for="name">Contraseña:</label>
-									<input class="input" type="password" placeholder="Contraseña" id="password">
+									<label for="createDato09">Contraseña:</label>
+									<input class="input" type="password" placeholder="Contraseña"  id="createDato09" name="createDato09">
 								</div>
 								<div class="form-group">
 									<label for="number">Numero de Personas:</label>
@@ -387,8 +454,8 @@
 								  <input class="input" type="text" placeholder="HH:MM" id="time">
 								</div>
 								<div class="form-group">
-									<label for="name">DNI:</label>
-									<input class="input" type="text" placeholder="DNI" id="dni">
+									<label for="createDato07">DNI:</label>
+									<input class="input" type="text" placeholder="DNI"  id="createDato07" name="createDato07">
 								</div>
 								<div class="form-group">
 									<label for="date">Fecha:</label>
@@ -397,7 +464,7 @@
 							</div>
 
 							<div class="col-md-12 text-center">
-								<button class="main-button">Solicitar Reserva</button>
+								<button type="submit" class="main-button">Solicitar Reserva</button>
 							</div>
 
 							<!-- Waiting modal -->
@@ -636,12 +703,12 @@
 					<!-- footer nav -->
 					<div class="col-md-6">
 						<nav class="footer-nav">
-							<a href="index.html">Home</a>
-							<a href="index.html#about">Sobre nosotros</a>
-							<a href="index.html#menu">Menu</a>
-							<a href="index.html#reservation">Reservacion</a>
-							<a href="index.html#events">Eventos</a>
-							<a href="index.html#contact">Contactos</a>
+							<a href="index2.html">Home</a>
+							<a href="index2.html#about">Sobre nosotros</a>
+							<a href="index2.html#menu">Menu</a>
+							<a href="index2.html#reservation">Reservacion</a>
+							<a href="index2.html#events">Eventos</a>
+							<a href="index2.html#contact">Contactos</a>
 						</nav>
 					</div>
 					<!-- /footer nav -->
@@ -666,12 +733,12 @@
 		<!-- /Preloader -->
 
 		<!-- jQuery Plugins -->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-		<script type="text/javascript" src="js/google-map.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+		<script th:src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script type="text/javascript" th:src="@{/js/google-map.js}"></script>
+		<script type="text/javascript" th:src="@{/js/main.js}"></script>
 
 	</body>
 </html>
