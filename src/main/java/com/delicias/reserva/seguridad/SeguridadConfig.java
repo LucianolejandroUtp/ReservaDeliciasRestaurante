@@ -32,6 +32,7 @@ public class SeguridadConfig {
                     registry.requestMatchers("/", "/js/**", "/css/**", "/fonts/**", "/assets/**", "/favicon.ico","error").permitAll();
                     registry.requestMatchers("/auth/**").permitAll();
                     registry.requestMatchers("/usuario/register").permitAll();
+                    registry.requestMatchers("/user/index").permitAll();
 
                     // registry.requestMatchers("/distrito/**").hasRole("USER");
                     registry.requestMatchers("/reserva/**").hasRole("USER");
