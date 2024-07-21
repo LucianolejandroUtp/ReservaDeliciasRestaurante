@@ -76,6 +76,20 @@
                                             </thead>
                                             <tbody>
                                                 <tr th:each="obj : ${reservas}">
+                                                    <!-- <div th:switch="${email}"> 
+                                                        <p th:case="lucyall19@gmail.com">User is an administrator</p>
+                                                      </div> -->
+
+
+
+                                                    <!-- <th th:text="${email.username}"></th> -->
+                                                    <!-- <div th:if="${email.usuario == 'lucyall19@gmail.com'}">
+                                                        algo
+                                                    </div>-->
+                                                    <!-- <td th:text="${email = lucyall19@gmail.com}">
+                                                        algo
+                                                    </td>  -->
+
                                                     <td th:text="${obj.id}"></td>
                                                     <td th:text="|${obj.usuarios.apellidoPat}, ${obj.usuarios.nombres}|"></td>
                                                     <td th:text="|${obj.usuarios.email}|"></td>

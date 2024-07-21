@@ -4,10 +4,14 @@ import com.delicias.reserva.modelos.Mesas;
 import com.delicias.reserva.modelos.Reservas;
 import com.delicias.reserva.modelos.Usuarios;
 import com.delicias.reserva.servicios.MesaService;
+import com.delicias.reserva.servicios.MyUserDetailService;
 import com.delicias.reserva.servicios.ReservaService;
 import com.delicias.reserva.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,6 +41,9 @@ public class ReservaController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private MyUserDetailService myUserDetailService;
+
     @GetMapping(path = { "/reservas", "/lista" })
     public String getAllReservas(Model model) {
         List<Reservas> reservas = reservaService.getAllReservas();
@@ -46,6 +53,16 @@ public class ReservaController {
         model.addAttribute("reservas", reservas);
         model.addAttribute("mesas", mesas);
         model.addAttribute("usuarios", usuarios);
+
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof UserDetails) {       
+
+            String email = ((UserDetails) authentication.getPrincipal()).getUsername();
+            System.out.println("Email en Reserva controller last: " + email);
+            model.addAttribute("email",email);
+        }
         return "reserva";
     }
 
@@ -141,5 +158,8 @@ public class ReservaController {
         reservaService.deleteReserva(id);
         return ResponseEntity.ok("Eliminación exitosa");
     }
+
+
+
 
 }
