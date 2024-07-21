@@ -25,19 +25,19 @@ public class Usuarios {
     @Column(name = "apellido_pat", nullable = false, length = 100)
     private String apellidoPat;
 
-    @Column(name = "apellido_mat", nullable = false, length = 100)
+    @Column(name = "apellido_mat", length = 100)
     private String apellidoMat;
 
-    @Column(name = "telefono", nullable = false, length = 100)
+    @Column(name = "telefono", length = 100)
     private String telefono;
 
-    @Column(name = "direccion", nullable = false, length = 100)
+    @Column(name = "direccion", length = 100)
     private String direccion;
 
-    @Column(name = "referencia", nullable = false, length = 100)
+    @Column(name = "referencia", length = 100)
     private String referencia;
 
-    @Column(name = "dni", nullable = false, length = 100)
+    @Column(name = "dni", length = 100)
     private String dni;
 
     @Column(name = "email", nullable = false, length = 100)
