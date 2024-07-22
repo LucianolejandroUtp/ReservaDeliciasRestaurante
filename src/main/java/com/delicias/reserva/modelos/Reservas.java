@@ -9,6 +9,8 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -49,5 +51,8 @@ public class Reservas {
     @ManyToOne(optional = false)
     @JoinColumn(name = "mesas_id", nullable = false)
     private Mesas mesas;
+
+    @OneToMany(mappedBy = "reservas")
+    private Set<Pedidos> pedidos = new LinkedHashSet<>();
 
 }
