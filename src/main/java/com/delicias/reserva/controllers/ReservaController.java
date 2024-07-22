@@ -89,7 +89,7 @@ public class ReservaController {
 
         // Convierte la fecha String al formato deseado
         LocalDate fecha = LocalDate.parse(dato1, formatoEntradaFecha);
-        LocalTime hora = LocalTime.parse(dato2.toUpperCase(), formatoEntradaHora);
+        LocalTime hora = LocalTime.parse(dato2, formatoEntradaHora);
 
         System.out.println("Fecha formateada: " + fecha);
         System.out.println("Hora formateada: " + hora);
