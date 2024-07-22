@@ -31,6 +31,11 @@ public class Pagos {
     @Column(name = "hora")
     private LocalTime hora;
 
+    @ColumnDefault("'EFECTIVO'")
+    @Lob
+    @Column(name = "tipo", nullable = false)
+    private String tipo;
+
     @ColumnDefault("'PENDIENTE'")
     @Lob
     @Column(name = "estado")
