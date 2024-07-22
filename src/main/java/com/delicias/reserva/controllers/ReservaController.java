@@ -1,10 +1,12 @@
 package com.delicias.reserva.controllers;
 
 import com.delicias.reserva.modelos.Mesas;
+import com.delicias.reserva.modelos.Pagos;
 import com.delicias.reserva.modelos.Reservas;
 import com.delicias.reserva.modelos.Usuarios;
 import com.delicias.reserva.servicios.MesaService;
 import com.delicias.reserva.servicios.MyUserDetailService;
+import com.delicias.reserva.servicios.PagoService;
 import com.delicias.reserva.servicios.ReservaService;
 import com.delicias.reserva.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,8 @@ public class ReservaController {
     private UsuarioService usuarioService;
     @Autowired
     private MyUserDetailService myUserDetailService;
+    @Autowired
+    private PagoService pagoService;
 
     @GetMapping(path = { "/reservas", "/lista" })
     public String getAllReservas(Model model) {
@@ -156,5 +160,42 @@ public class ReservaController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         reservaService.deleteReserva(id);
         return ResponseEntity.ok("Eliminación exitosa");
+    }
+
+    @GetMapping("pago/{id}")
+    @ResponseBody
+    public ResponseEntity<?> pagar(@PathVariable Long id) {
+        Reservas reserva = reservaService.getReservaById(id);
+        final int[] montoF = {0};
+        
+        reserva.getPedidos().forEach(pedido -> {
+            montoF[0] = montoF[0] + pedido.getPlatos().getPrecio() + pedido.getBebidas().getPrecio();
+            System.out.println("Pedido: " + pedido.getId() + " - " + pedido.getPlatos().getNombre() + ":" + pedido.getPlatos().getPrecio() + " - " + pedido.getBebidas().getNombre() +":"+ pedido.getBebidas().getPrecio());
+        });
+        System.out.println("Monto total: " + montoF[0]);
+
+
+        
+        DateTimeFormatter formatoEntradaFecha = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter formatoEntradaHora = DateTimeFormatter.ofPattern("hh:mm a");
+
+        // Convierte la fecha String al formato deseado
+        LocalDate fecha = LocalDate.parse("06/24/2024", formatoEntradaFecha);
+        // LocalTime hora = LocalTime.parse(dato2.toUpperCase(), formatoEntradaHora);
+
+        System.out.println("Fecha formateada: " + fecha);
+        // System.out.println("Hora formateada: " + hora);
+        Pagos miPago = new Pagos();
+
+        miPago.setMonto(montoF[0]);
+        miPago.setFecha(fecha);
+        miPago.setHora(null);
+        miPago.setTipo("YAPE");
+        miPago.setEstado("PENDIENTE");
+        miPago.setReservas(reserva);
+
+        pagoService.savePago(miPago);
+
+        return ResponseEntity.ok("Reserva pagada");
     }
 }
