@@ -128,6 +128,17 @@ begin
 end//
 DELIMITER ;
 
+DELIMITER //
+CREATE TRIGGER tri_pagos_insert
+    before INSERT
+    ON pagos FOR EACH ROW
+begin
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = CURRENT_TIMESTAMP;
+    END IF;
+end//
+DELIMITER ;
+
 
 
 DELIMITER //
@@ -222,6 +233,17 @@ DELIMITER //
 CREATE TRIGGER tri_mesas_update
     before update
     ON mesas FOR EACH ROW
+BEGIN
+    IF NEW.updated_at IS NULL THEN
+        SET NEW.updated_at = CURRENT_TIMESTAMP;
+    END IF;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER tri_pagos_update
+    before update
+    ON pagos FOR EACH ROW
 BEGIN
     IF NEW.updated_at IS NULL THEN
         SET NEW.updated_at = CURRENT_TIMESTAMP;
