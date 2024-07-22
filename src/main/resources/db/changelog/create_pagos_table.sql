@@ -6,6 +6,7 @@ CREATE TABLE pagos (
     monto         DECIMAL(10, 2)                           NOT NULL,
     fecha         DATE                                     NOT NULL,
     hora          TIME                                     NULL,
+    tipo          enum ('YAPE', 'EFECTIVO', 'TARJETA', 'TRANSFERENCIA') NOT NULL DEFAULT 'EFECTIVO',
     estado        enum ('PENDIENTE', 'APROBADO', 'RECHAZADO') NULL     DEFAULT 'PENDIENTE',
     created_at    TIMESTAMP                                NULL     DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP                                NULL ON UPDATE CURRENT_TIMESTAMP,
