@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,8 +21,8 @@ public class Pagos {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "monto", nullable = false, precision = 10, scale = 2)
-    private BigDecimal monto;
+    @Column(name = "monto", nullable = false)
+    private Integer monto;
 
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
@@ -49,7 +48,7 @@ public class Pagos {
     private Instant updatedAt;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "pedidos_id", nullable = false)
-    private Pedidos pedidos;
+    @JoinColumn(name = "reservas_id", nullable = false)
+    private Reservas reservas;
 
 }

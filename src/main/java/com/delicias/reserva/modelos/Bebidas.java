@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 
 @NoArgsConstructor
@@ -27,8 +26,8 @@ public class Bebidas {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "precio", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precio;
+    @Column(name = "precio", nullable = false)
+    private Integer precio;
 
     @ColumnDefault("0")
     @Column(name = "stock", nullable = false)
