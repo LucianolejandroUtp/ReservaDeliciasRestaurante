@@ -1,6 +1,5 @@
 package com.delicias.reserva.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class BebidaController {
     public String create(
         @RequestParam(name = "createDato01", required = false) String dato01,
             @RequestParam(name = "createDato02", required = false) String dato02,
-            @RequestParam(name = "createDato03", required = false) BigDecimal dato03,
+            @RequestParam(name = "createDato03", required = false) int dato03,
             @RequestParam(name = "createDato04", required = false) Integer dato04,
             @RequestParam(name = "createDato05", required = false) Integer dato05,
             @RequestParam(name = "createDato06", required = false) String dato06,
