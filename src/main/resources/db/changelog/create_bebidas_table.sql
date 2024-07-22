@@ -6,7 +6,7 @@ CREATE TABLE bebidas
     id            BIGINT                                   NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre        VARCHAR(100)                             NOT NULL,
     descripcion   TEXT                                     NOT NULL,
-    precio        DECIMAL(10, 2)                           NOT NULL,
+    precio        INT                                      NOT NULL,
     stock         INT                                      NOT NULL DEFAULT 0,
     estado        enum ('ACTIVO', 'INACTIVO', 'ELIMINADO') NULL     DEFAULT 'ACTIVO',
     created_at    TIMESTAMP                                NULL     DEFAULT CURRENT_TIMESTAMP,
