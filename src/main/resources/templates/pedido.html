@@ -80,7 +80,7 @@
                                             <tbody>
                                                 <tr th:each="obj : ${pedidos}">
                                                     <td th:text="${obj.id}"></td>
-                                                    <td th:text="|${obj.reservas.usuarios.email}|"></td>
+                                                    <td th:text="|ID:${obj.reservas.id} - ${obj.reservas.usuarios.email}|"></td>
                                                     <td th:text="${#temporals.format(obj.reservas.fecha, 'dd-MMM-yyyy')}"></td>
                                                     <td th:text="${obj.reservas.nroPersonas}"></td>
                                                     <td th:text="|${obj.reservas.mesas.nroMesa} (${obj.reservas.mesas.capacidad})|"></td>
