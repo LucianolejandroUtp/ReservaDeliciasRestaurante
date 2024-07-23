@@ -9,7 +9,9 @@ import com.delicias.reserva.servicios.MyUserDetailService;
 import com.delicias.reserva.servicios.PagoService;
 import com.delicias.reserva.servicios.ReservaService;
 import com.delicias.reserva.servicios.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -45,6 +47,8 @@ public class ReservaController {
     private MyUserDetailService myUserDetailService;
     @Autowired
     private PagoService pagoService;
+    @Autowired
+    ResourceLoader resourceLoader;
 
     @GetMapping(path = { "/reservas", "/lista" })
     public String getAllReservas(Model model) {
@@ -170,14 +174,14 @@ public class ReservaController {
         
         reserva.getPedidos().forEach(pedido -> {
             montoF[0] = montoF[0] + pedido.getPlatos().getPrecio() + pedido.getBebidas().getPrecio();
-            System.out.println("Pedido: " + pedido.getId() + " - " + pedido.getPlatos().getNombre() + ":" + pedido.getPlatos().getPrecio() + " - " + pedido.getBebidas().getNombre() +":"+ pedido.getBebidas().getPrecio());
+            System.out.println("Pedido: " + pedido.getId() + " - " + pedido.getPlatos().getNombre() + ":"
+                    + pedido.getPlatos().getPrecio() + " - " + pedido.getBebidas().getNombre() + ":"
+                    + pedido.getBebidas().getPrecio());
         });
         System.out.println("Monto total: " + montoF[0]);
 
-
-        
         DateTimeFormatter formatoEntradaFecha = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        DateTimeFormatter formatoEntradaHora = DateTimeFormatter.ofPattern("hh:mm a");
+        // DateTimeFormatter formatoEntradaHora = DateTimeFormatter.ofPattern("hh:mm a");
 
         // Convierte la fecha String al formato deseado
         LocalDate fecha = LocalDate.parse("06/24/2024", formatoEntradaFecha);
