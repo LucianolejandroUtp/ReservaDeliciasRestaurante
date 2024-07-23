@@ -89,8 +89,9 @@
                                                             <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
                                                             <td th:text="${obj.updatedAt}"></td>
                                                             <td>
-                                                                <!-- <a class="btn mb-2 btn-outline-info" th:href="@{'/reserva/pago/' + ${obj.id}}"> Pagar</a> -->
+                                                                <a class="btn mb-2 btn-outline-info" th:href="@{'/recibo/create/' + ${obj.id}}">Recibo</a>
                                                                 <button type="button" class="btn mb-2 btn-outline-success" th:onclick="|pagar(${obj.id})|"> Pagar</button>
+                                                                <!-- <button type="button" class="btn mb-2 btn-outline-success" th:onclick="|pdf(${obj.id})|"> Recibo</button> -->
                                                             </td>
                                                             <td>
                                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,10 +118,6 @@
                                                                 <td th:text="${obj.estado}"></td>
                                                                 <td th:text="${#temporals.format(obj.createdAt, 'dd-MM-yyyy')}"></td>
                                                                 <td th:text="${obj.updatedAt}"></td>
-                                                                <td>
-                                                                    <a class="btn mb-2 btn-outline-info" th:href="@{'/reserva/pago/${obj.id}'}"> Pagar</a>
-                                                                    <button type="button" class="btn mb-2 btn-outline-success" th:onclick="|registroDelete(${obj.id})|"> Confirmar</button>
-                                                                </td>
                                                                 <td>
                                                                     <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                         <span class="text-muted sr-only">Action</span>
