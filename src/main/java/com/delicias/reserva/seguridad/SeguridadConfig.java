@@ -51,6 +51,7 @@ public class SeguridadConfig {
                     registry.requestMatchers("/plato/**").hasRole("ADMIN");
                     registry.requestMatchers("/mesa/**").hasRole("ADMIN");
                     registry.requestMatchers("/usuario/**").hasRole("ADMIN");
+                    registry.requestMatchers("/recibo/**").hasRole("ADMIN");
 
                     registry.anyRequest().authenticated();
                 })
